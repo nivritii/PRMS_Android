@@ -1,9 +1,16 @@
 package sg.edu.nus.iss.phoenix.scheduleprogram.android.controller;
 
 import android.content.Intent;
+import android.util.Log;
+
+import java.util.List;
 
 import sg.edu.nus.iss.phoenix.core.android.controller.MainController;
+import sg.edu.nus.iss.phoenix.radioprogram.android.ui.MaintainProgramScreen;
+import sg.edu.nus.iss.phoenix.radioprogram.entity.RadioProgram;
+import sg.edu.nus.iss.phoenix.scheduleprogram.android.delegate.CreateScheduleProgramDelegate;
 import sg.edu.nus.iss.phoenix.scheduleprogram.android.delegate.RetrieveScheduleProgramsDelegate;
+import sg.edu.nus.iss.phoenix.scheduleprogram.android.delegate.UpdateScheduleProgramDelegate;
 import sg.edu.nus.iss.phoenix.scheduleprogram.android.ui.MaintainScheduleScreen;
 import sg.edu.nus.iss.phoenix.scheduleprogram.android.ui.ScheduleListScreen;
 import sg.edu.nus.iss.phoenix.scheduleprogram.entity.ScheduleProgram;
@@ -28,7 +35,49 @@ public class ScheduleProgramController {
 
     public void onDisplayProgramList(ScheduleListScreen scheduleListScreen) {
         this.scheduleListScreen = scheduleListScreen;
-        new RetrieveScheduleProgramsDelegate(this).execute("all");
+        new RetrieveScheduleProgramsDelegate(this).execute("psall");
     }
 
+    public void scheduleProgramsRetrieved(List<ScheduleProgram> schedulePrograms) {
+        scheduleListScreen.showSchedulePrograms(schedulePrograms);
+    }
+
+    public void selectCreateScheduleProgram() {
+        sp2edit = null;
+        Intent intent = new Intent(MainController.getApp(), MaintainScheduleScreen.class);
+        MainController.displayScreen(intent);
+    }
+
+    public void selectEditScheduleProgram(ScheduleProgram scheduleProgram) {
+        sp2edit = scheduleProgram;
+        Log.v(TAG, "Editing program slot: " + scheduleProgram.getName() + "..." );
+
+        Intent intent = new Intent(MainController.getApp(), MaintainScheduleScreen.class);
+        MainController.displayScreen(intent);
+    }
+
+    public void onDisplayScheduleProgram(MaintainScheduleScreen maintainScheduleScreen) {
+        this.maintainScheduleScreen = maintainScheduleScreen;
+        if (sp2edit == null)
+            maintainScheduleScreen.createScheduleProgram();
+        else
+            maintainScheduleScreen.editScheduleProgram(sp2edit);
+    }
+
+    public void selectCreateScheduleProgram(ScheduleProgram sp) {
+        new CreateScheduleProgramDelegate(this).execute(sp);
+    }
+
+    public void scheduleProgramCreated(boolean success) {
+        // Go back to ProgramList screen with refreshed programs.
+        startUseCase();
+    }
+
+    public void selectUpdateScheduleProgram(ScheduleProgram sp) {
+        new UpdateScheduleProgramDelegate(this).execute(sp);
+    }
+
+    public void scheduleProgramUpdated (boolean success){
+        startUseCase();
+    }
 }

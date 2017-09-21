@@ -7,24 +7,24 @@ import sg.edu.nus.iss.phoenix.radioprogram.entity.RadioProgram;
  */
 
 public class ScheduleProgram {
-    private RadioProgram radioProgram;
+    private String name;
     private String dateOfProgram;
     private String startTime;
     private String duration;
 
-    public ScheduleProgram(RadioProgram radioProgram, String dateOfProgram, String startTime, String duration) {
-        this.radioProgram = radioProgram;
+    public ScheduleProgram(String name, String dateOfProgram, String startTime, String duration) {
+        this.name = name;
         this.dateOfProgram = dateOfProgram;
         this.startTime = startTime;
         this.duration = duration;
     }
 
-    public RadioProgram getRadioProgram() {
-        return radioProgram;
+    public String getName() {
+        return name;
     }
 
-    public void setRadioProgram(RadioProgram radioProgram) {
-        this.radioProgram = radioProgram;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDateOfProgram() {
