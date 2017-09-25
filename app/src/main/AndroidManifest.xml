@@ -44,6 +44,7 @@
         <activity android:name=".radioprogram.android.ui.ReviewSelectProgramScreen"></activity>
         <activity android:name=".scheduleprogram.android.ui.ScheduleListScreen"></activity>
         <activity android:name=".scheduleprogram.android.ui.MaintainScheduleScreen"></activity>
+        <activity android:name=".scheduleprogram.android.ui.CopyScheduleScreen"></activity>
     </application>
 
 </manifest>

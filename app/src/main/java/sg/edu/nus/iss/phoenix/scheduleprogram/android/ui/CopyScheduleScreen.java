@@ -12,18 +12,16 @@ import android.widget.TextView;
 
 import sg.edu.nus.iss.phoenix.R;
 import sg.edu.nus.iss.phoenix.core.android.controller.ControlFactory;
-import sg.edu.nus.iss.phoenix.radioprogram.android.ui.MaintainProgramScreen;
-import sg.edu.nus.iss.phoenix.radioprogram.entity.RadioProgram;
 import sg.edu.nus.iss.phoenix.scheduleprogram.entity.ScheduleProgram;
 
 /**
- * Created by nivi on 9/6/2017.
+ * Created by nivi on 9/25/2017.
  */
 
-public class MaintainScheduleScreen extends AppCompatActivity {
+public class CopyScheduleScreen extends AppCompatActivity {
 
     // Tag for logging
-    private static final String TAG = MaintainScheduleScreen.class.getName();
+    private static final String TAG = CopyScheduleScreen.class.getName();
 
     private EditText mSPNameEditText;
     private EditText mSPDOPEditText;
@@ -51,12 +49,12 @@ public class MaintainScheduleScreen extends AppCompatActivity {
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        ControlFactory.getScheduleProgramController().onDisplayScheduleProgram(this);
+        ControlFactory.getScheduleProgramController().onDisplayCopyScheduleProgram(this);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_editor, menu);
+        getMenuInflater().inflate(R.menu.menu_editor_copy_sch, menu);
         return true;
     }
 
@@ -78,26 +76,13 @@ public class MaintainScheduleScreen extends AppCompatActivity {
             // Respond to a click on the "Save" menu option
             case R.id.action_save:
                 // Save radio program.
-                if (sp2edit == null) { // Newly created.
-                    Log.v(TAG, "Saving program slot" + mSPNameEditText.getText().toString() + "...");
-                    ScheduleProgram sp = new ScheduleProgram(mSPNameEditText.getText().toString(),
+                Log.v(TAG, "Saving program slot " + sp2edit.getName() + "...");
+                ScheduleProgram sp = new ScheduleProgram(mSPNameEditText.getText().toString(),
                             mSPDOPEditText.getText().toString(), mSPStartTimeEditText.getText().toString(),
                             mSPDurationEditText.getText().toString());
-                    ControlFactory.getScheduleProgramController().selectCreateScheduleProgram(sp);
-                }
-                else { // Edited.
-                    Log.v(TAG, "Saving program slot " + sp2edit.getName() + "...");
-                    sp2edit.setDateOfProgram(mSPDOPEditText.getText().toString());
-                    sp2edit.setStartTime(mSPStartTimeEditText.getText().toString());
-                    sp2edit.setDuration(mSPDurationEditText.getText().toString());
-                    ControlFactory.getScheduleProgramController().selectUpdateScheduleProgram(sp2edit);
-                }
+                ControlFactory.getScheduleProgramController().selectCreateScheduleProgram(sp);
                 return true;
-            // Respond to a click on the "Delete" menu option
-            case R.id.action_delete:
-                Log.v(TAG, "Deleting program slot" + sp2edit.getName() + "...");
-                ControlFactory.getScheduleProgramController().selectDeleteScheduleProgram(sp2edit);
-                return true;
+
             // Respond to a click on the "Cancel" menu option
             case R.id.action_cancel:
                 Log.v(TAG, "Canceling creating/editing program slot...");
@@ -109,14 +94,14 @@ public class MaintainScheduleScreen extends AppCompatActivity {
         return true;
     }
 
-    public void createScheduleProgram() {
+   /* public void createScheduleProgram() {
         this.sp2edit = null;
         mSPNameEditText.setText("", TextView.BufferType.EDITABLE);
         mSPDOPEditText.setText("", TextView.BufferType.EDITABLE);
         mSPStartTimeEditText.setText("", TextView.BufferType.EDITABLE);
         mSPDurationEditText.setText("", TextView.BufferType.EDITABLE);
         mSPNameEditText.setKeyListener(mSPNameEditTextKeyListener);
-    }
+    }*/
 
     public void editScheduleProgram(ScheduleProgram sp2edit) {
         this.sp2edit = sp2edit;
