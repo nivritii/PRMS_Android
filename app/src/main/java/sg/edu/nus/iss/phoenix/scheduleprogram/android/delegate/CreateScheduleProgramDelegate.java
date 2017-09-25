@@ -20,6 +20,7 @@ import sg.edu.nus.iss.phoenix.scheduleprogram.android.controller.ScheduleProgram
 import sg.edu.nus.iss.phoenix.scheduleprogram.entity.ScheduleProgram;
 
 import static sg.edu.nus.iss.phoenix.core.android.delegate.DelegateHelper.PRMS_BASE_URL_RADIO_PROGRAM;
+import static sg.edu.nus.iss.phoenix.core.android.delegate.DelegateHelper.PRMS_BASE_URL_SCHEDULE_PROGRAM;
 
 /**
  * Created by nivi on 9/21/2017.
@@ -38,8 +39,8 @@ public class CreateScheduleProgramDelegate extends AsyncTask<ScheduleProgram, Vo
 
     @Override
     protected Boolean doInBackground(ScheduleProgram... params) {
-        Uri builtUri = Uri.parse(PRMS_BASE_URL_RADIO_PROGRAM).buildUpon().build();
-        builtUri = Uri.withAppendedPath(builtUri,"createps").buildUpon().build();
+        Uri builtUri = Uri.parse(PRMS_BASE_URL_SCHEDULE_PROGRAM).buildUpon().build();
+        builtUri = Uri.withAppendedPath(builtUri,"create").buildUpon().build();
         Log.v(TAG, builtUri.toString());
         URL url = null;
         try {
