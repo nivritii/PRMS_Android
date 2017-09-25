@@ -35,7 +35,7 @@ public class ScheduleProgramController {
 
     public void onDisplayProgramList(ScheduleListScreen scheduleListScreen) {
         this.scheduleListScreen = scheduleListScreen;
-        new RetrieveScheduleProgramsDelegate(this).execute("psall");
+        new RetrieveScheduleProgramsDelegate(this).execute("all");
     }
 
     public void scheduleProgramsRetrieved(List<ScheduleProgram> schedulePrograms) {
