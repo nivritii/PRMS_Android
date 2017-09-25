@@ -9,8 +9,10 @@ import sg.edu.nus.iss.phoenix.core.android.controller.MainController;
 import sg.edu.nus.iss.phoenix.radioprogram.android.ui.MaintainProgramScreen;
 import sg.edu.nus.iss.phoenix.radioprogram.entity.RadioProgram;
 import sg.edu.nus.iss.phoenix.scheduleprogram.android.delegate.CreateScheduleProgramDelegate;
+import sg.edu.nus.iss.phoenix.scheduleprogram.android.delegate.DeleteScheduleProgramDelegate;
 import sg.edu.nus.iss.phoenix.scheduleprogram.android.delegate.RetrieveScheduleProgramsDelegate;
 import sg.edu.nus.iss.phoenix.scheduleprogram.android.delegate.UpdateScheduleProgramDelegate;
+import sg.edu.nus.iss.phoenix.scheduleprogram.android.ui.CopyScheduleScreen;
 import sg.edu.nus.iss.phoenix.scheduleprogram.android.ui.MaintainScheduleScreen;
 import sg.edu.nus.iss.phoenix.scheduleprogram.android.ui.ScheduleListScreen;
 import sg.edu.nus.iss.phoenix.scheduleprogram.entity.ScheduleProgram;
@@ -25,6 +27,7 @@ public class ScheduleProgramController {
 
     private ScheduleListScreen scheduleListScreen;
     private MaintainScheduleScreen maintainScheduleScreen;
+    private CopyScheduleScreen copyScheduleScreen;
     private ScheduleProgram sp2edit = null;
 
     public void startUseCase() {
@@ -64,8 +67,21 @@ public class ScheduleProgramController {
             maintainScheduleScreen.editScheduleProgram(sp2edit);
     }
 
+    public void onDisplayCopyScheduleProgram(CopyScheduleScreen copyScheduleScreen) {
+        this.copyScheduleScreen = copyScheduleScreen;
+        copyScheduleScreen.editScheduleProgram(sp2edit);
+    }
+
     public void selectCreateScheduleProgram(ScheduleProgram sp) {
         new CreateScheduleProgramDelegate(this).execute(sp);
+    }
+
+    public void selectCopyScheduleProgram(ScheduleProgram scheduleProgram) {
+        sp2edit = scheduleProgram;
+        Log.v(TAG, "Copying program slot: " + scheduleProgram.getName() + "..." );
+
+        Intent intent = new Intent(MainController.getApp(), CopyScheduleScreen.class);
+        MainController.displayScreen(intent);
     }
 
     public void scheduleProgramCreated(boolean success) {
@@ -78,6 +94,19 @@ public class ScheduleProgramController {
     }
 
     public void scheduleProgramUpdated (boolean success){
+        startUseCase();
+    }
+
+    public void selectDeleteScheduleProgram(ScheduleProgram sp) {
+        new DeleteScheduleProgramDelegate(this).execute(sp.getDuration(),sp.getDateOfProgram());
+    }
+
+    public void scheduleProgramDeleted(boolean success) {
+        startUseCase();
+    }
+
+    public void selectCancelCreateEditScheduleProgram() {
+        // Go back to ProgramList screen with refreshed programs.
         startUseCase();
     }
 }

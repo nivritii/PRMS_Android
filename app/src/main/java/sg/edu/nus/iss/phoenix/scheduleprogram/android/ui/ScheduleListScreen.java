@@ -79,7 +79,7 @@ public class ScheduleListScreen extends AppCompatActivity{
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_list, menu);
+        getMenuInflater().inflate(R.menu.menu_list_schedule, menu);
         return true;
     }
 
@@ -96,6 +96,19 @@ public class ScheduleListScreen extends AppCompatActivity{
                 else {
                     Log.v(TAG, "Viewing program slot: " + selectedSP.getName() + "...");
                     ControlFactory.getScheduleProgramController().selectEditScheduleProgram(selectedSP);
+                }
+
+            //Copy program slot
+            case R.id.action_copy:
+                if (selectedSP == null) {
+                    // Prompt for the selection of a radio program.
+                    Toast.makeText(this, "Select a program slot first! Use arrow keys on emulator", Toast.LENGTH_SHORT).show();
+                    Log.v(TAG, "There is no selected program slot.");
+                }
+                else {
+                    // Copy radio program.
+                    //Log.v(TAG, "Copying program slot " + selectedSP.getName() + "...");
+                    ControlFactory.getScheduleProgramController().selectCopyScheduleProgram(selectedSP);
                 }
         }
 
