@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <TextView
+        android:id="@+id/tv_create_idno"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:width="30dp"
+        android:height="30dp"
+        android:text="ID No."
+        android:textSize="20sp"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"/>
+
+    <EditText
+        android:id="@+id/et_create_idno"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="e.g. gzj97542"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingRight="20dp"
+        android:maxLength="1"/>
+
+    <TextView
+        android:id="@+id/tv_create_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:width="30dp"
+        android:height="30dp"
+        android:text="Name"
+        android:textSize="20sp"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"/>
+
+    <EditText
+        android:id="@+id/et_create_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="e.g. John"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingRight="20dp"
+        android:maxLength="1"/>
+
+    <TextView
+        android:id="@+id/tv_create_department"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:width="30dp"
+        android:height="30dp"
+        android:text="Department"
+        android:textSize="20sp"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"/>
+
+    <EditText
+        android:id="@+id/et_create_department"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="e.g. IT"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingRight="20dp"
+        android:maxLength="1"/>
+
+    <TextView
+        android:id="@+id/tv_create_pos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:width="30dp"
+        android:height="30dp"
+        android:text="Position"
+        android:textSize="20sp"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"/>
+
+    <EditText
+        android:id="@+id/et_create_pos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="e.g. Manager"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingRight="20dp"
+        android:maxLength="1"/>
+
+    <TextView
+        android:id="@+id/tv_create_addr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:width="30dp"
+        android:height="30dp"
+        android:text="Address"
+        android:textSize="20sp"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"/>
+
+    <EditText
+        android:id="@+id/et_create_addr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="e.g. 125 Farrer Road"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingRight="20dp"
+        android:maxLength="1"/>
+
+    <TextView
+        android:id="@+id/tv_create_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:width="30dp"
+        android:height="30dp"
+        android:text="Password"
+        android:textSize="20sp"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"/>
+
+    <EditText
+        android:id="@+id/et_create_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="e.g. 123"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingRight="20dp"
+        android:maxLength="1"/>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/btn_create_createuser"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="140dp"
+        android:text="Create"
+        android:textColor="@color/btn_login"
+        android:background="@color/btn_login_bg"
+        />
+
+    </LinearLayout>
+
+</LinearLayout>
