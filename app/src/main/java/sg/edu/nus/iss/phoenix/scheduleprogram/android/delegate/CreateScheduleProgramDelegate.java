@@ -55,7 +55,10 @@ public class CreateScheduleProgramDelegate extends AsyncTask<ScheduleProgram, Vo
             json.put("programName", params[0].getName());
             json.put("dateOfProgram", params[0].getDateOfProgram());
             json.put("startTime", params[0].getStartTime());
+            json.put("endTime", params[0].getEndTime());
             json.put("duration", params[0].getDuration());
+            json.put("presenter", params[0].getPresenter());
+            json.put("producer", params[0].getProducer());
         } catch (JSONException e) {
             Log.v(TAG, e.getMessage());
         }

@@ -69,7 +69,7 @@ public class ScheduleProgramController {
 
     public void onDisplayCopyScheduleProgram(CopyScheduleScreen copyScheduleScreen) {
         this.copyScheduleScreen = copyScheduleScreen;
-        copyScheduleScreen.editScheduleProgram(sp2edit);
+        copyScheduleScreen.copyScheduleProgram(sp2edit);
     }
 
     public void selectCreateScheduleProgram(ScheduleProgram sp) {
