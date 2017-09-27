@@ -4,13 +4,13 @@
 
     <!-- android:icon="@drawable/ic_done" -->
     <item
-        android:id="@+id/action_view"
+        android:id="@+id/action_view_sch"
         android:title="@string/action_view"
 
         app:showAsAction="always" />
 
     <item
-        android:id="@+id/action_copy"
+        android:id="@+id/action_copy_sch"
         android:title="@string/action_copy"
 
         app:showAsAction="always" />

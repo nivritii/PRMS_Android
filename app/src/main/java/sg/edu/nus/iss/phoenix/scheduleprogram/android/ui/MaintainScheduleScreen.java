@@ -27,7 +27,7 @@ public class MaintainScheduleScreen extends AppCompatActivity {
 
     private EditText mSPNameEditText;
     private EditText mSPDOPEditText;
-    private EditText mSPStartTimeEditText;
+    private EditText mSPStartTimeEditText,mSPEndTimeEditText,mSPPresenterEditText,mSPProducerEditText;
     private EditText mSPDurationEditText;
     private ScheduleProgram sp2edit = null;
     KeyListener mSPNameEditTextKeyListener = null;
@@ -42,7 +42,11 @@ public class MaintainScheduleScreen extends AppCompatActivity {
         mSPNameEditText = (EditText) findViewById(R.id.maintain_schedule_name_text_view);
         mSPDOPEditText = (EditText) findViewById(R.id.maintain_schedule_date_text_view);
         mSPStartTimeEditText = (EditText) findViewById(R.id.maintain_schedule_sTime_text_view);
+        mSPEndTimeEditText = (EditText) findViewById(R.id.maintain_schedule_eTime_text_view);
         mSPDurationEditText = (EditText) findViewById(R.id.maintain_schedule_duration_text_view);
+        mSPPresenterEditText = (EditText) findViewById(R.id.maintain_schedule_presenter_text_view);
+        mSPProducerEditText = (EditText) findViewById(R.id.maintain_schedule_producer_text_view);
+
         // Keep the KeyListener for name EditText so as to enable editing after disabling it.
         mSPNameEditTextKeyListener = mSPNameEditText.getKeyListener();
 
@@ -79,10 +83,11 @@ public class MaintainScheduleScreen extends AppCompatActivity {
             case R.id.action_save:
                 // Save radio program.
                 if (sp2edit == null) { // Newly created.
-                    Log.v(TAG, "Saving program slot" + mSPNameEditText.getText().toString() + "...");
+                    Log.v(TAG, "Saving program slot " + mSPNameEditText.getText().toString() + "...");
                     ScheduleProgram sp = new ScheduleProgram(mSPNameEditText.getText().toString(),
                             mSPDOPEditText.getText().toString(), mSPStartTimeEditText.getText().toString(),
-                            mSPDurationEditText.getText().toString());
+                            mSPDurationEditText.getText().toString(),mSPEndTimeEditText.getText().toString(),
+                            mSPPresenterEditText.getText().toString(),mSPProducerEditText.getText().toString());
                     ControlFactory.getScheduleProgramController().selectCreateScheduleProgram(sp);
                 }
                 else { // Edited.
@@ -90,6 +95,9 @@ public class MaintainScheduleScreen extends AppCompatActivity {
                     sp2edit.setDateOfProgram(mSPDOPEditText.getText().toString());
                     sp2edit.setStartTime(mSPStartTimeEditText.getText().toString());
                     sp2edit.setDuration(mSPDurationEditText.getText().toString());
+                    sp2edit.setEndTime(mSPEndTimeEditText.getText().toString());
+                    sp2edit.setPresenter(mSPPresenterEditText.getText().toString());
+                    sp2edit.setProducer(mSPProducerEditText.getText().toString());
                     ControlFactory.getScheduleProgramController().selectUpdateScheduleProgram(sp2edit);
                 }
                 return true;
@@ -114,7 +122,10 @@ public class MaintainScheduleScreen extends AppCompatActivity {
         mSPNameEditText.setText("", TextView.BufferType.EDITABLE);
         mSPDOPEditText.setText("", TextView.BufferType.EDITABLE);
         mSPStartTimeEditText.setText("", TextView.BufferType.EDITABLE);
+        mSPEndTimeEditText.setText("", TextView.BufferType.EDITABLE);
         mSPDurationEditText.setText("", TextView.BufferType.EDITABLE);
+        mSPPresenterEditText.setText("", TextView.BufferType.EDITABLE);
+        mSPProducerEditText.setText("", TextView.BufferType.EDITABLE);
         mSPNameEditText.setKeyListener(mSPNameEditTextKeyListener);
     }
 
@@ -124,7 +135,10 @@ public class MaintainScheduleScreen extends AppCompatActivity {
             mSPNameEditText.setText(sp2edit.getName(), TextView.BufferType.NORMAL);
             mSPDOPEditText.setText(sp2edit.getDateOfProgram(), TextView.BufferType.EDITABLE);
             mSPStartTimeEditText.setText(sp2edit.getStartTime(), TextView.BufferType.EDITABLE);
+            mSPEndTimeEditText.setText(sp2edit.getEndTime(), TextView.BufferType.EDITABLE);
             mSPDurationEditText.setText(sp2edit.getDuration(),TextView.BufferType.EDITABLE);
+            mSPPresenterEditText.setText(sp2edit.getPresenter(),TextView.BufferType.EDITABLE);
+            mSPProducerEditText.setText(sp2edit.getProducer(),TextView.BufferType.EDITABLE);
             mSPNameEditText.setKeyListener(null);
         }
     }

@@ -48,9 +48,21 @@ public class ScheduleProgramAdapter extends ArrayAdapter<ScheduleProgram> {
         schedulePMStartTime.setText(currentSP.getStartTime(), TextView.BufferType.NORMAL);
         schedulePMStartTime.setKeyListener(null);
 
+        EditText schedulePMEndTime= (EditText)listItemView.findViewById(R.id.maintain_schedule_eTime_text_view);
+        schedulePMEndTime.setText(currentSP.getEndTime(), TextView.BufferType.NORMAL);
+        schedulePMEndTime.setKeyListener(null);
+
         EditText schedulePMDuration = (EditText)listItemView.findViewById(R.id.maintain_schedule_duration_text_view);
         schedulePMDuration.setText(currentSP.getDuration(), TextView.BufferType.NORMAL);
         schedulePMDuration.setKeyListener(null);
+
+        EditText schedulePMPresenter = (EditText)listItemView.findViewById(R.id.maintain_schedule_presenter_text_view);
+        schedulePMPresenter.setText(currentSP.getPresenter(), TextView.BufferType.NORMAL);
+        schedulePMPresenter.setKeyListener(null);
+
+        EditText schedulePMProducer = (EditText)listItemView.findViewById(R.id.maintain_schedule_producer_text_view);
+        schedulePMProducer.setText(currentSP.getProducer(), TextView.BufferType.NORMAL);
+        schedulePMProducer.setKeyListener(null);
 
         return listItemView;
     }

@@ -91,9 +91,12 @@ public class RetrieveScheduleProgramsDelegate extends AsyncTask<String, Void, St
                     String name = spJson.getString("programName");
                     String dateOfProgram = spJson.getString("dateOfProgram");
                     String startTime = spJson.getString("startTime");
+                    String endTime = spJson.getString("endTime");
                     String duration = spJson.getString("duration");
+                    String presenter = spJson.getString("presenter");
+                    String producer = spJson.getString("producer");
                     Log.v(TAG, name);
-                    schedulePrograms.add(new ScheduleProgram(name, dateOfProgram, startTime, duration));
+                    schedulePrograms.add(new ScheduleProgram(name, dateOfProgram, startTime, duration, endTime,presenter,producer));
                 }
             } catch (JSONException e) {
                 Log.v(TAG, e.getMessage());

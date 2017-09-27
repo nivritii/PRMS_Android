@@ -87,19 +87,20 @@ public class ScheduleListScreen extends AppCompatActivity{
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             // Respond to a click on the "View" menu option
-            case R.id.action_view:
+            case R.id.action_view_sch:
                 if (selectedSP == null) {
                     // Prompt for the selection of a radio program.
                     Toast.makeText(this, "Select a program slot first! Use arrow keys on emulator", Toast.LENGTH_SHORT).show();
                     Log.v(TAG, "There is no selected program slot.");
                 }
                 else {
-                    Log.v(TAG, "Viewing program slot: " + selectedSP.getName() + "...");
+                    Log.v(TAG, "Viewing program slot: " + selectedSP.getName()+selectedSP.getPresenter()  + "...");
                     ControlFactory.getScheduleProgramController().selectEditScheduleProgram(selectedSP);
                 }
+                return true;
 
             //Copy program slot
-            case R.id.action_copy:
+            case R.id.action_copy_sch:
                 if (selectedSP == null) {
                     // Prompt for the selection of a radio program.
                     Toast.makeText(this, "Select a program slot first! Use arrow keys on emulator", Toast.LENGTH_SHORT).show();
@@ -107,9 +108,10 @@ public class ScheduleListScreen extends AppCompatActivity{
                 }
                 else {
                     // Copy radio program.
-                    //Log.v(TAG, "Copying program slot " + selectedSP.getName() + "...");
+                    Log.v(TAG, "Copying program slot " + selectedSP.getName() + "...");
                     ControlFactory.getScheduleProgramController().selectCopyScheduleProgram(selectedSP);
                 }
+                return true;
         }
 
         return true;
