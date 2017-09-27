@@ -53,8 +53,6 @@ public class MainController {
 
     public void selectMaintainSchedule() {
         // This is the placeholder for starting the Maintain Schedule use case.
-        // At present, it ii used to test the invocation of  Review Select Radio Program use case.
-       //ControlFactory.getReviewSelectProgramController().startUseCase();
        ControlFactory.getScheduleProgramController().startUseCase();
 
     }

@@ -60,23 +60,23 @@
             android:layout_height="wrap_content"
             android:maxLength="8" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Presenter"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Presenter"/>
 
-        <EditText
-            android:id="@+id/maintain_schedule_presenter_text_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/maintain_schedule_presenter_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Producer"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Producer"/>
 
-        <EditText
-            android:id="@+id/maintain_schedule_producer_text_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/maintain_schedule_producer_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
     </LinearLayout>

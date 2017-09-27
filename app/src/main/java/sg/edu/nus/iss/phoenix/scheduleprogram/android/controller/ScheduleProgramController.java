@@ -11,11 +11,14 @@ import sg.edu.nus.iss.phoenix.radioprogram.entity.RadioProgram;
 import sg.edu.nus.iss.phoenix.scheduleprogram.android.delegate.CreateScheduleProgramDelegate;
 import sg.edu.nus.iss.phoenix.scheduleprogram.android.delegate.DeleteScheduleProgramDelegate;
 import sg.edu.nus.iss.phoenix.scheduleprogram.android.delegate.RetrieveScheduleProgramsDelegate;
+import sg.edu.nus.iss.phoenix.scheduleprogram.android.delegate.RetrieveWeeklySchedulesDelegate;
 import sg.edu.nus.iss.phoenix.scheduleprogram.android.delegate.UpdateScheduleProgramDelegate;
 import sg.edu.nus.iss.phoenix.scheduleprogram.android.ui.CopyScheduleScreen;
 import sg.edu.nus.iss.phoenix.scheduleprogram.android.ui.MaintainScheduleScreen;
 import sg.edu.nus.iss.phoenix.scheduleprogram.android.ui.ScheduleListScreen;
+import sg.edu.nus.iss.phoenix.scheduleprogram.android.ui.WeeklySchListScreen;
 import sg.edu.nus.iss.phoenix.scheduleprogram.entity.ScheduleProgram;
+import sg.edu.nus.iss.phoenix.scheduleprogram.entity.WeeklySchedule;
 
 /**
  * Created by nivi on 9/6/2017.
@@ -26,23 +29,35 @@ public class ScheduleProgramController {
     private static final String TAG = ScheduleProgramController.class.getName();
 
     private ScheduleListScreen scheduleListScreen;
+    private WeeklySchListScreen weeklySchListScreen;
     private MaintainScheduleScreen maintainScheduleScreen;
     private CopyScheduleScreen copyScheduleScreen;
     private ScheduleProgram sp2edit = null;
+    private WeeklySchedule ws2view = null;
 
     public void startUseCase() {
         sp2edit = null;
-        Intent intent = new Intent(MainController.getApp(), ScheduleListScreen.class);
+
+        Intent intent = new Intent(MainController.getApp(), WeeklySchListScreen.class);
         MainController.displayScreen(intent);
+    }
+
+    public void onDisplayWeeklySchList(WeeklySchListScreen weeklySchListScreen){
+        this.weeklySchListScreen = weeklySchListScreen;
+        new RetrieveWeeklySchedulesDelegate(this).execute("weeklyslots");
     }
 
     public void onDisplayProgramList(ScheduleListScreen scheduleListScreen) {
         this.scheduleListScreen = scheduleListScreen;
-        new RetrieveScheduleProgramsDelegate(this).execute("all");
+        new RetrieveScheduleProgramsDelegate(this).execute("weeklyslots/" +ws2view.getStartDate());
     }
 
     public void scheduleProgramsRetrieved(List<ScheduleProgram> schedulePrograms) {
         scheduleListScreen.showSchedulePrograms(schedulePrograms);
+    }
+
+    public void weeklySchedulesRetrieved(List<WeeklySchedule> weeklySchedules) {
+        weeklySchListScreen.showWeeklySchedules(weeklySchedules);
     }
 
     public void selectCreateScheduleProgram() {
@@ -56,6 +71,14 @@ public class ScheduleProgramController {
         Log.v(TAG, "Editing program slot: " + scheduleProgram.getName() + "..." );
 
         Intent intent = new Intent(MainController.getApp(), MaintainScheduleScreen.class);
+        MainController.displayScreen(intent);
+    }
+
+    public void selectWeeklyScheduleSlot(WeeklySchedule weeklySchedule){
+        ws2view = weeklySchedule;
+        Log.v(TAG, "Viewing Weekly slots: " + weeklySchedule.getStartDate() + "..." );
+
+        Intent intent = new Intent(MainController.getApp(), ScheduleListScreen.class);
         MainController.displayScreen(intent);
     }
 

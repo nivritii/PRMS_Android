@@ -40,21 +40,26 @@ public class ScheduleProgramAdapter extends ArrayAdapter<ScheduleProgram> {
         schedulePMName.setText(currentSP.getName(), TextView.BufferType.NORMAL);
         schedulePMName.setKeyListener(null); // This disables editing.
 
+
         EditText schedulePMDate = (EditText)listItemView.findViewById(R.id.maintain_schedule_date_text_view);
         schedulePMDate.setText(currentSP.getDateOfProgram(), TextView.BufferType.NORMAL);
         schedulePMDate.setKeyListener(null);
+
 
         EditText schedulePMStartTime= (EditText)listItemView.findViewById(R.id.maintain_schedule_sTime_text_view);
         schedulePMStartTime.setText(currentSP.getStartTime(), TextView.BufferType.NORMAL);
         schedulePMStartTime.setKeyListener(null);
 
+
         EditText schedulePMEndTime= (EditText)listItemView.findViewById(R.id.maintain_schedule_eTime_text_view);
         schedulePMEndTime.setText(currentSP.getEndTime(), TextView.BufferType.NORMAL);
         schedulePMEndTime.setKeyListener(null);
 
+
         EditText schedulePMDuration = (EditText)listItemView.findViewById(R.id.maintain_schedule_duration_text_view);
         schedulePMDuration.setText(currentSP.getDuration(), TextView.BufferType.NORMAL);
         schedulePMDuration.setKeyListener(null);
+
 
         EditText schedulePMPresenter = (EditText)listItemView.findViewById(R.id.maintain_schedule_presenter_text_view);
         schedulePMPresenter.setText(currentSP.getPresenter(), TextView.BufferType.NORMAL);
