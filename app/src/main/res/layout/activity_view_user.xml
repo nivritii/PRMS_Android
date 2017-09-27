@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/tv_view_idno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:width="30dp"
+            android:height="30dp"
+            android:text="ID No."
+            android:textSize="20sp"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"/>
+
+
+        <TextView
+            android:id="@+id/tv_view_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:width="30dp"
+            android:height="30dp"
+            android:text="Name"
+            android:textSize="20sp"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"/>
+
+
+        <TextView
+            android:id="@+id/tv_view_department"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:width="30dp"
+            android:height="30dp"
+            android:text="Department"
+            android:textSize="20sp"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"/>
+
+
+        <TextView
+            android:id="@+id/tv_view_pos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:width="30dp"
+            android:height="30dp"
+            android:text="Position"
+            android:textSize="20sp"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"/>
+
+
+        <TextView
+            android:id="@+id/tv_view_addr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:width="30dp"
+            android:height="30dp"
+            android:text="Address"
+            android:textSize="20sp"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"/>
+
+
+        <TextView
+            android:id="@+id/tv_view_age"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:width="30dp"
+            android:height="30dp"
+            android:text="Age"
+            android:textSize="20sp"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"/>
+
+
+    </LinearLayout>
