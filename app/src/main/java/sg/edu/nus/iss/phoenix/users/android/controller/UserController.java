@@ -35,7 +35,7 @@ public class UserController {
 
     public void onDisplayUserList(UserListScreen userListScreen){
         this.userListScreen = userListScreen;
-        new RetrieveUserDelegate().execute("all");
+        new RetrieveUserDelegate(this).execute("all");
     }
 
     public void usersRetrieved(List<User> users){

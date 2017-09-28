@@ -34,10 +34,15 @@ public class RetrieveUserDelegate extends AsyncTask<String, Void, String> {
     private UserController userController = null;
     private ReviewSelectUserController reviewSelectUserController = null;
 
-    public void RetrieveUserDelegate(UserController userController){
+    public RetrieveUserDelegate(UserController userController) {
         this.reviewSelectUserController = null;
         this.userController = userController;
     }
+
+    /*public void RetrieveUserDelegate(UserController userController){
+        this.reviewSelectUserController = null;
+        this.userController = userController;
+    }*/
 
     public void RetrieveUserDelegate(ReviewSelectUserController reviewSelectUserController){
         this.userController = null;
