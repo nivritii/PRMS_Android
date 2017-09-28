@@ -39,15 +39,17 @@ public class RetrieveUserDelegate extends AsyncTask<String, Void, String> {
         this.userController = userController;
     }
 
+    public RetrieveUserDelegate(ReviewSelectUserController reviewSelectUserController) {
+        this.userController = null;
+        this.reviewSelectUserController = reviewSelectUserController;
+    }
+
     /*public void RetrieveUserDelegate(UserController userController){
         this.reviewSelectUserController = null;
         this.userController = userController;
     }*/
 
-    public void RetrieveUserDelegate(ReviewSelectUserController reviewSelectUserController){
-        this.userController = null;
-        this.reviewSelectUserController = reviewSelectUserController;
-    }
+
 
     @Override
     protected String doInBackground(String... params) {
