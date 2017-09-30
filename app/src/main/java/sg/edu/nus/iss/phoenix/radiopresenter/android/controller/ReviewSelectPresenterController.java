@@ -51,7 +51,7 @@ public class ReviewSelectPresenterController {
         new RetrievePresentersDelegate(this).execute("all");
     }
 
-    public void programsRetrieved(List<RadioPresenter> radioPresenters) {
+    public void presentersRetrieved(List<RadioPresenter> radioPresenters) {
         reviewSelectPresenterScreen.showPresenters(radioPresenters);
     }
 
@@ -71,6 +71,8 @@ public class ReviewSelectPresenterController {
         // At present, call the MainController instead.
         ControlFactory.getMainController().selectedPresenter(rpSelected);
     }
+
+
 }
 
 

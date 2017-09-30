@@ -99,7 +99,6 @@ public class ProgramController {
     }
 
     public void maintainedProgram() {
-
         ControlFactory.getMainController().maintainedProgram();
     }
 }

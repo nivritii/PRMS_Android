@@ -41,6 +41,11 @@ public class MainController {
 
         ControlFactory.getProgramController().startUseCase();
     }
+    public void selectMaintainPresenter() {
+
+        ControlFactory.getReviewSelectPresenterController().startUseCase();
+    }
+
 
     public void maintainedProgram() {
 
@@ -51,14 +56,14 @@ public class MainController {
         username = "<not logged in>";
         ControlFactory.getLoginController().logout();
     }
-
+/*
     public void selectMaintainSchedule() {
         // This is the placeholder for starting the Maintain Schedule use case.
         // At present, it ii used to test the invocation of  Review Select Radio Program use case.
        //ControlFactory.getReviewSelectProgramController().startUseCase();
        ControlFactory.getScheduleProgramController().startUseCase();
 
-    }
+    }*/
 
     // This is a dummy operation to test the invocation of Review Select Radio Program use case.
     public void selectedProgram(RadioProgram rpSelected) {

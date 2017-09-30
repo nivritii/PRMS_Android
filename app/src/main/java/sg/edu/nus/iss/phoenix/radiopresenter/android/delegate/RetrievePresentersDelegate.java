@@ -22,6 +22,7 @@ import sg.edu.nus.iss.phoenix.radiopresenter.android.controller.PresenterControl
 import sg.edu.nus.iss.phoenix.radiopresenter.android.controller.ReviewSelectPresenterController;
 import sg.edu.nus.iss.phoenix.radiopresenter.entity.RadioPresenter;
 
+import static sg.edu.nus.iss.phoenix.core.android.delegate.DelegateHelper.PRMS_BASE_URL_RADIO_PRESENTER;
 import static sg.edu.nus.iss.phoenix.core.android.delegate.DelegateHelper.PRMS_BASE_URL_RADIO_PROGRAM;
 
 public class RetrievePresentersDelegate extends AsyncTask<String, Void, String> {
@@ -43,7 +44,7 @@ public class RetrievePresentersDelegate extends AsyncTask<String, Void, String> 
 
     @Override
     protected String doInBackground(String... params) {
-        Uri builtUri1 = Uri.parse( PRMS_BASE_URL_RADIO_PROGRAM).buildUpon().build();
+        Uri builtUri1 = Uri.parse( PRMS_BASE_URL_RADIO_PRESENTER).buildUpon().build();
         Uri builtUri = Uri.withAppendedPath(builtUri1, params[0]).buildUpon().build();
         Log.v(TAG, builtUri.toString());
         URL url = null;
@@ -96,9 +97,9 @@ public class RetrievePresentersDelegate extends AsyncTask<String, Void, String> 
             Log.v(TAG, "JSON response error.");
         }
 
-        if (programController != null)
-            programController.presentersRetrieved(radioPresenters);
+        if (reviewSelectPresenterController != null)
+            reviewSelectPresenterController.presentersRetrieved(radioPresenters);
         else if (reviewSelectPresenterController != null)
-            reviewSelectPresenterController.programsRetrieved(radioPresenters);
+            reviewSelectPresenterController.presentersRetrieved(radioPresenters);
     }
 }

@@ -26,12 +26,12 @@ public class MainScreen extends AppCompatActivity {
             // The code in this method will be executed when the numbers category is clicked on.
             @Override
             public void onClick(View view) {
-                ControlFactory.getMainController().selectMaintainProgram();
+                ControlFactory.getMainController().selectMaintainPresenter();
             }
 
         });
 
-        mbtn_schedule = (Button) findViewById(R.id.button_schedule);
+        /*mbtn_schedule = (Button) findViewById(R.id.button_schedule);
         // Set a click listener on Maintain Schedule Button.
         mbtn_schedule.setOnClickListener(new View.OnClickListener() {
             // The code in this method will be executed when the numbers category is clicked on.
@@ -40,7 +40,7 @@ public class MainScreen extends AppCompatActivity {
                 ControlFactory.getMainController().selectMaintainSchedule();
             }
 
-        });
+        });*/
 
         // Log out  - Back to PRMS  Activity - Pre Login Page
         mbtn_logout = (Button) findViewById(R.id.btnLogout);

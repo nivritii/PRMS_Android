@@ -8,6 +8,7 @@ import java.util.List;
 import sg.edu.nus.iss.phoenix.core.android.controller.ControlFactory;
 import sg.edu.nus.iss.phoenix.core.android.controller.MainController;
 import sg.edu.nus.iss.phoenix.radiopresenter.android.delegate.RetrievePresentersDelegate;
+import sg.edu.nus.iss.phoenix.radiopresenter.android.ui.ReviewSelectPresenterScreen;
 import sg.edu.nus.iss.phoenix.radiopresenter.entity.RadioPresenter;
 import sg.edu.nus.iss.phoenix.radioprogram.android.delegate.CreateProgramDelegate;
 import sg.edu.nus.iss.phoenix.radioprogram.android.delegate.DeleteProgramDelegate;
@@ -21,7 +22,7 @@ public class PresenterController {
     // Tag for logging.
     private static final String TAG = PresenterController.class.getName();
 
-    private ProgramListScreen presenterListScreen;
+    private ReviewSelectPresenterScreen presenterListScreen;
     private MaintainProgramScreen maintainProgramScreen;
     private RadioProgram rp2edit = null;
 
@@ -31,12 +32,10 @@ public class PresenterController {
         MainController.displayScreen(intent);
     }
 
-    public void presentersRetrieved(List<RadioPresenter>) {
-    }
+
     public void presentersRetrieved(List<RadioPresenter> radioPresenter) {
-        presenterListScreen.showPresenter(radioPresenters);
+        presenterListScreen.showPresenters(radioPresenter);
     }
-    
 /*
     public void onDisplayProgramList(ProgramListScreen programListScreen) {
         this.programListScreen = programListScreen;

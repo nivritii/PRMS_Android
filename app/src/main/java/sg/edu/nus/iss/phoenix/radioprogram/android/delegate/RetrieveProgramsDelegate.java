@@ -85,7 +85,7 @@ public class RetrieveProgramsDelegate extends AsyncTask<String, Void, String> {
                     String description = rpJson.getString("description");
                     String name = rpJson.getString("name");
                     String typicalDuration = rpJson.getString("typicalDuration");
-                    Log.v(TAG, name);
+
                     radioPrograms.add(new RadioProgram(name, description, typicalDuration));
                 }
             } catch (JSONException e) {
