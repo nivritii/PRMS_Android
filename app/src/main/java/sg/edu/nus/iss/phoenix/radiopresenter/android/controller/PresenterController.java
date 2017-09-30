@@ -30,15 +30,20 @@ public class PresenterController {
         Intent intent = new Intent(MainController.getApp(), ProgramListScreen.class);
         MainController.displayScreen(intent);
     }
+
+    public void presentersRetrieved(List<RadioPresenter>) {
+    }
+    public void presentersRetrieved(List<RadioPresenter> radioPresenter) {
+        presenterListScreen.showPresenter(radioPresenters);
+    }
+    
 /*
     public void onDisplayProgramList(ProgramListScreen programListScreen) {
         this.programListScreen = programListScreen;
         new RetrievePresentersDelegate(this).execute("all");
     }
 
-    public void presentersRetrieved(List<RadioPresenter> radioPresenter) {
-        presenterListScreen.showPresenter(radioPresenters);
-    }
+
 /*
     public void selectCreateProgram() {
         rp2edit = null;
