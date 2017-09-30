@@ -91,7 +91,9 @@ public class ReviewSelectPresenterScreen extends AppCompatActivity {
                     Log.v(TAG, "There is no selected radio presenter.");
                 }
                 else {
+
                     Log.v(TAG, "Selected radio presenter: " + selectedRP.getRadioPresenterName() + "...");
+                    Toast.makeText(this,"selected RadioPresenter" +selectedRP.getRadioPresenterName(),Toast.LENGTH_LONG).show();
                     ControlFactory.getReviewSelectPresenterController().selectPresenter(selectedRP);
                 }
         }

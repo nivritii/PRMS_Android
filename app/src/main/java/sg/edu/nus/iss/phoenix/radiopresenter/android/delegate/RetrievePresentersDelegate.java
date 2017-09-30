@@ -69,7 +69,7 @@ public class RetrievePresentersDelegate extends AsyncTask<String, Void, String> 
         } finally {
             if (urlConnection != null) urlConnection.disconnect();
         }
-
+        Log.v("Databaseresult",jsonResp);
         return jsonResp;
     }
 
@@ -79,16 +79,17 @@ public class RetrievePresentersDelegate extends AsyncTask<String, Void, String> 
 
         if (result != null && !result.equals("")) {
             try {
+                Log.v("InsidePostExecute",result);
                 JSONObject reader = new JSONObject(result);
                 JSONArray rpArray = reader.getJSONArray("rpList");
 
                 for (int i = 0; i < rpArray.length(); i++) {
                     JSONObject rpJson = rpArray.getJSONObject(i);
-                    String description = rpJson.getString("description");
-                    String name = rpJson.getString("name");
-                    String typicalDuration = rpJson.getString("typicalDuration");
+                    //String description = rpJson.getString("description");
+                        String name = rpJson.getString("name");
+                     //String typicalDuration = rpJson.getString("typicalDuration");
                     Log.v(TAG, name);
-                    radioPresenters.add(new RadioPresenter(name, description, typicalDuration));
+                    radioPresenters.add(new RadioPresenter(name, "", ""));
                 }
             } catch (JSONException e) {
                 Log.v(TAG, e.getMessage());

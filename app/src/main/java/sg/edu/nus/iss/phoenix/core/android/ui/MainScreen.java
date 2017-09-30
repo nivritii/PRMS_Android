@@ -11,7 +11,7 @@ import sg.edu.nus.iss.phoenix.R;
 import sg.edu.nus.iss.phoenix.core.android.controller.ControlFactory;
 
 public class MainScreen extends AppCompatActivity {
-    private Button mbtn_radio_program;
+    private Button mbtn_radio_presenter;
     private Button mbtn_schedule;
     private Button mbtn_logout;
 
@@ -20,9 +20,9 @@ public class MainScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mbtn_radio_program = (Button) findViewById(R.id.button_radio_program);
+        mbtn_radio_presenter = (Button) findViewById(R.id.button_radio_selectreviewpresenter);
         // Set a click listener on Maintain Program Button.
-        mbtn_radio_program.setOnClickListener(new View.OnClickListener() {
+        mbtn_radio_presenter.setOnClickListener(new View.OnClickListener() {
             // The code in this method will be executed when the numbers category is clicked on.
             @Override
             public void onClick(View view) {

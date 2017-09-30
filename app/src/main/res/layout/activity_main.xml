@@ -55,13 +55,13 @@
 
 
         <Button
-            android:id="@+id/button_radio_program"
+            android:id="@+id/button_radio_selectreviewpresenter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:background="@color/btn_login_bg"
-            android:text="@string/btn_program"
+            android:text="Review Select Presenter"
             android:textColor="@color/btn_login" />
 
         <Button

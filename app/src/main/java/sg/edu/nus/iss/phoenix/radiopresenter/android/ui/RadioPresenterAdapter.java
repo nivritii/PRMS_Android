@@ -20,8 +20,8 @@ import sg.edu.nus.iss.phoenix.radiopresenter.entity.RadioPresenter;
 
 public class RadioPresenterAdapter extends ArrayAdapter<RadioPresenter> {
 
-    public RadioPresenterAdapter(@NonNull Context context,  ArrayList<RadioPresenter> radioPrograms) {
-        super(context, 0, radioPrograms);
+    public RadioPresenterAdapter(@NonNull Context context,  ArrayList<RadioPresenter> radioPresenters) {
+        super(context, 0, radioPresenters);
     }
 
     @NonNull
@@ -35,18 +35,19 @@ public class RadioPresenterAdapter extends ArrayAdapter<RadioPresenter> {
         //    Word currentWord = getItem(position);
         RadioPresenter currentRP = getItem(position);
 
-        EditText radioPMName = (EditText)listItemView.findViewById(R.id.maintain_program_name_text_view);
+        EditText radioPMName = (EditText)listItemView.findViewById(R.id.maintain_presenter_name_text_view);
         radioPMName.setText(currentRP.getRadioPresenterName(), TextView.BufferType.NORMAL);
+        radioPMName.setTextIsSelectable(false);
         radioPMName.setKeyListener(null); // This disables editing.
 
-        EditText radioPMDesc = (EditText)listItemView.findViewById(R.id.maintain_program_desc_text_view);
+        /*EditText radioPMDesc = (EditText)listItemView.findViewById(R.id.maintain_program_desc_text_view);
         radioPMDesc.setText(currentRP.getRadioPresenterDescription(), TextView.BufferType.NORMAL);
         radioPMDesc.setKeyListener(null);
 
         EditText radioPMDuration = (EditText)listItemView.findViewById(R.id.maintain_program_duration_text_view);
         radioPMDuration.setText(currentRP.getRadioPresentermailid(), TextView.BufferType.NORMAL);
         radioPMDuration.setKeyListener(null);
-
+*/
         return listItemView;
     }
 }

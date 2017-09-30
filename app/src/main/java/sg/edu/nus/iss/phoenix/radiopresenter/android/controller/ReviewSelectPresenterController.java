@@ -57,7 +57,7 @@ public class ReviewSelectPresenterController {
 
     public void selectPresenter(RadioPresenter radioPresenter) {
         rpSelected = radioPresenter;
-        Log.v(TAG, "Selected radio program: " + radioPresenter.getRadioPresenterName() + ".");
+        Log.v(TAG, "Selected radio presenter: " + radioPresenter.getRadioPresenterName() + ".");
         // To call the base use case controller with the selected radio program.
         // At present, call the MainController instead.
         ControlFactory.getMainController().selectedPresenter(rpSelected);
@@ -66,7 +66,7 @@ public class ReviewSelectPresenterController {
 
     public void selectCancel() {
         rpSelected = null;
-        Log.v(TAG, "Cancelled the seleciton of radio presenter.");
+        Log.v(TAG, "Cancelled the selection of radio presenter.");
         // To call the base use case controller without selection;
         // At present, call the MainController instead.
         ControlFactory.getMainController().selectedPresenter(rpSelected);

@@ -14,35 +14,12 @@ should be changed once maintain user is ready
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Name"
+        android:text="List of Presenters  "
         tools:text="Name" />
     <EditText
         android:id="@+id/maintain_presenter_name_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="Radio Presenter Name" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="About"
-        tools:text="About" />
 
-    <EditText
-        android:id="@+id/maintain_presenter_desc_text_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="one" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="emailID"
-        tools:text="contact via email" />
-
-    <EditText
-        android:id="@+id/maintain_presenter_email_text_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:maxLength="8"
-        android:text="EMAIL-ID"
-        tools:text="Email-id" />
 </LinearLayout>
