@@ -4,8 +4,12 @@
 
     <!-- android:icon="@drawable/ic_done" -->
     <item
-        android:id="@+id/action_view"
-        android:title="@string/action_view"
+        android:id="@+id/action_delete"
+        android:title="@string/action_delete"
+        app:showAsAction="always" />
 
+    <item
+        android:id="@+id/action_update"
+        android:title="@string/action_update"
         app:showAsAction="always" />
 </menu>

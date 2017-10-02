@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import sg.edu.nus.iss.phoenix.core.android.ui.MainScreen;
 import sg.edu.nus.iss.phoenix.radioprogram.entity.RadioProgram;
+import sg.edu.nus.iss.phoenix.users.entity.User;
 
 public class MainController {
     private static Application app = null;
@@ -40,11 +41,15 @@ public class MainController {
 
         ControlFactory.getProgramController().startUseCase();
     }
+    public void selectMaintainUser(){
+        ControlFactory.getUserController().startUseCase();
+    }
 
     public void maintainedProgram() {
 
         startUseCase(username);
     }
+    public void maintainedUser(){startUseCase(username);}
 
     public void selectLogout() {
         username = "<not logged in>";
@@ -61,4 +66,5 @@ public class MainController {
     public void selectedProgram(RadioProgram rpSelected) {
         startUseCase(username);
     }
+    public void selectedUser(User userSelected) { startUseCase(username);}
 }

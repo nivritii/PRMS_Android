@@ -41,6 +41,9 @@
         <activity android:name=".core.android.ui.MainScreen" />
         <activity android:name=".radioprogram.android.ui.ProgramListScreen" />
         <activity android:name=".radioprogram.android.ui.MaintainProgramScreen" />
+        <activity android:name=".users.android.ui.ReviewSelectUserScreen"/>
+        <activity android:name=".users.android.ui.CreateUserScreen"/>
+        <activity android:name=".users.android.ui.UserListScreen"/>
         <activity android:name=".radioprogram.android.ui.ReviewSelectProgramScreen"></activity>
         <activity android:name=".scheduleprogram.android.ui.WeeklySchListScreen"></activity>
         <activity android:name=".scheduleprogram.android.ui.ScheduleListScreen"></activity>
