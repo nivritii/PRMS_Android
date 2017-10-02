@@ -91,7 +91,7 @@ public class CopyScheduleScreen extends AppCompatActivity {
             // Respond to a click on the "Cancel" menu option
             case R.id.action_cancel_copy:
                 Log.v(TAG, "Canceling creating/editing program slot...");
-                ControlFactory.getScheduleProgramController().selectCancelCreateEditScheduleProgram();
+                //ControlFactory.getScheduleProgramController().selectCancelCreateEditScheduleProgram();
                 return true;
 
         }

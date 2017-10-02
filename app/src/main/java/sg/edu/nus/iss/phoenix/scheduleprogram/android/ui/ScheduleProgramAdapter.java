@@ -31,7 +31,7 @@ public class ScheduleProgramAdapter extends ArrayAdapter<ScheduleProgram> {
         View listItemView = convertView;
         if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(
-                    R.layout.activity_schedule_program, parent, false);
+                    R.layout.activity_schedule_program_adapter, parent, false);
         }
         //    Word currentWord = getItem(position);
        ScheduleProgram currentSP = getItem(position);

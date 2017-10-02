@@ -14,20 +14,10 @@
             android:layout_height="wrap_content"
             android:text="Name"
             tools:text="Name" />
-        <!--<EditText
+        <EditText
         android:id="@+id/maintain_schedule_name_text_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />-->
-    
-    <!-- Spinner Dropdown -->
-    <Spinner
-        android:id="@+id/spinnerRP"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dip"
-        android:layout_marginLeft="8dip"
-        android:layout_marginRight="8dip"
-        />
+        android:layout_height="wrap_content" />
 
         <TextView
             android:layout_width="match_parent"
@@ -70,19 +60,10 @@
             android:layout_height="wrap_content"
             android:maxLength="8" />
 
-   <!-- <TextView
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Presenter"/>-->
-    <Spinner
-        android:id="@+id/spinnerPresenter"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dip"
-        android:layout_marginLeft="8dip"
-        android:layout_marginRight="8dip"
-        />
-
+        android:text="Presenter"/>
 
     <EditText
         android:id="@+id/maintain_schedule_presenter_text_view"
@@ -94,18 +75,8 @@
         android:layout_height="wrap_content"
         android:text="Producer"/>
 
-    <!--<EditText
+    <EditText
         android:id="@+id/maintain_schedule_producer_text_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />-->
-
-    <Spinner
-        android:id="@+id/spinnerProducer"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dip"
-        android:layout_marginLeft="8dip"
-        android:layout_marginRight="8dip"
-        />
-
-</LinearLayout>
+        android:layout_height="wrap_content" />
+    </LinearLayout>
