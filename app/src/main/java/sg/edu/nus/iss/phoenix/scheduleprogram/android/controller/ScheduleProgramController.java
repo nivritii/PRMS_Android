@@ -3,13 +3,18 @@ package sg.edu.nus.iss.phoenix.scheduleprogram.android.controller;
 import android.content.Intent;
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import sg.edu.nus.iss.phoenix.core.android.controller.MainController;
+import sg.edu.nus.iss.phoenix.radioprogram.android.delegate.RetrieveProgramsDelegate;
 import sg.edu.nus.iss.phoenix.radioprogram.android.ui.MaintainProgramScreen;
 import sg.edu.nus.iss.phoenix.radioprogram.entity.RadioProgram;
 import sg.edu.nus.iss.phoenix.scheduleprogram.android.delegate.CreateScheduleProgramDelegate;
 import sg.edu.nus.iss.phoenix.scheduleprogram.android.delegate.DeleteScheduleProgramDelegate;
+import sg.edu.nus.iss.phoenix.scheduleprogram.android.delegate.RetrievePPDelegate;
+import sg.edu.nus.iss.phoenix.scheduleprogram.android.delegate.RetrieveRadioProgramDelegate;
 import sg.edu.nus.iss.phoenix.scheduleprogram.android.delegate.RetrieveScheduleProgramsDelegate;
 import sg.edu.nus.iss.phoenix.scheduleprogram.android.delegate.RetrieveWeeklySchedulesDelegate;
 import sg.edu.nus.iss.phoenix.scheduleprogram.android.delegate.UpdateScheduleProgramDelegate;
@@ -35,12 +40,17 @@ public class ScheduleProgramController {
     private ScheduleProgram sp2edit = null;
     private WeeklySchedule ws2view = null;
 
+    public static List<String> radioPrograms;
+    public static List<String> presenters;
+    public static List<String> producers;
+
     public void startUseCase() {
         sp2edit = null;
 
         Intent intent = new Intent(MainController.getApp(), WeeklySchListScreen.class);
         MainController.displayScreen(intent);
     }
+
 
     public void onDisplayWeeklySchList(WeeklySchListScreen weeklySchListScreen){
         this.weeklySchListScreen = weeklySchListScreen;
@@ -62,6 +72,17 @@ public class ScheduleProgramController {
 
     public void selectCreateScheduleProgram() {
         sp2edit = null;
+
+        try {
+            radioPrograms = new RetrieveRadioProgramDelegate(this).execute("all").get();
+            presenters = new RetrievePPDelegate(this).execute("presenters").get();
+            producers = new RetrievePPDelegate(this).execute("producers").get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
         Intent intent = new Intent(MainController.getApp(), MaintainScheduleScreen.class);
         MainController.displayScreen(intent);
     }
@@ -69,6 +90,17 @@ public class ScheduleProgramController {
     public void selectEditScheduleProgram(ScheduleProgram scheduleProgram) {
         sp2edit = scheduleProgram;
         Log.v(TAG, "Editing program slot: " + scheduleProgram.getName() + "..." );
+
+        try {
+            radioPrograms = new RetrieveRadioProgramDelegate(this).execute("all").get();
+            presenters = new RetrievePPDelegate(this).execute("presenters").get();
+            producers = new RetrievePPDelegate(this).execute("producers").get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
 
         Intent intent = new Intent(MainController.getApp(), MaintainScheduleScreen.class);
         MainController.displayScreen(intent);
@@ -84,10 +116,11 @@ public class ScheduleProgramController {
 
     public void onDisplayScheduleProgram(MaintainScheduleScreen maintainScheduleScreen) {
         this.maintainScheduleScreen = maintainScheduleScreen;
-        if (sp2edit == null)
+        if (sp2edit == null) {
             maintainScheduleScreen.createScheduleProgram();
-        else
+        }else {
             maintainScheduleScreen.editScheduleProgram(sp2edit);
+        }
     }
 
     public void onDisplayCopyScheduleProgram(CopyScheduleScreen copyScheduleScreen) {
@@ -121,15 +154,16 @@ public class ScheduleProgramController {
     }
 
     public void selectDeleteScheduleProgram(ScheduleProgram sp) {
-        new DeleteScheduleProgramDelegate(this).execute(sp.getDuration(),sp.getDateOfProgram());
+        new DeleteScheduleProgramDelegate(this).execute(sp);
     }
 
     public void scheduleProgramDeleted(boolean success) {
         startUseCase();
     }
 
-    public void selectCancelCreateEditScheduleProgram() {
+    public void selectCancelCreateEditScheduleProgram(ScheduleProgram scheduleProgram) {
         // Go back to ProgramList screen with refreshed programs.
-        startUseCase();
+        sp2edit = scheduleProgram;
+       // startUseCase();
     }
 }

@@ -2,6 +2,7 @@ package sg.edu.nus.iss.phoenix.scheduleprogram.android.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -38,6 +39,15 @@ public class WeeklySchListScreen extends AppCompatActivity {
 
         ArrayList<WeeklySchedule> weeklySchedules = new ArrayList<WeeklySchedule>();
         mWSAdapter = new WeeklyScheduleAdapter(this, weeklySchedules);
+
+        // Setup FAB to open EditorActivity
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ControlFactory.getScheduleProgramController().selectCreateScheduleProgram();
+            }
+        });
 
         mListView = (ListView) findViewById(R.id.weekly_sch_list);
         mListView.setAdapter(mWSAdapter);
@@ -97,5 +107,10 @@ public class WeeklySchListScreen extends AppCompatActivity {
         for (int i = 0; i < weeklySchedules.size(); i++) {
             mWSAdapter.add(weeklySchedules.get(i));
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        ControlFactory.getProgramController().maintainedProgram();
     }
 }
