@@ -41,14 +41,14 @@ public class ScheduleListScreen extends AppCompatActivity{
         ArrayList<ScheduleProgram> schedulePrograms = new ArrayList<ScheduleProgram>();
         mSPAdapter = new ScheduleProgramAdapter(this, schedulePrograms);
 
-        // Setup FAB to open EditorActivity
+       /* // Setup FAB to open EditorActivity
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ControlFactory.getScheduleProgramController().selectCreateScheduleProgram();
             }
-        });
+        });*/
 
         mListView = (ListView) findViewById(R.id.schedule_pm_list);
         mListView.setAdapter(mSPAdapter);
