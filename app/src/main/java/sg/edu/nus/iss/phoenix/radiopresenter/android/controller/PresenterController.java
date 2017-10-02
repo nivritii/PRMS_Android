@@ -30,12 +30,15 @@ public class PresenterController {
         rp2edit = null;
         Intent intent = new Intent(MainController.getApp(), ProgramListScreen.class);
         MainController.displayScreen(intent);
+
     }
 
 
     public void presentersRetrieved(List<RadioPresenter> radioPresenter) {
         presenterListScreen.showPresenters(radioPresenter);
     }
+
+}
 /*
     public void onDisplayProgramList(ProgramListScreen programListScreen) {
         this.programListScreen = programListScreen;
@@ -109,4 +112,4 @@ public class PresenterController {
         ControlFactory.getMainController().maintainedProgram();
     }
     */
-}
+

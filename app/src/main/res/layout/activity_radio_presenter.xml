@@ -6,10 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".radioprogram.android.ui.MaintainProgramScreen">
+    tools:context=".radiopresenter.android.ui.ReviewSelectPresenterScreen">
 <!-- Mantainprogramscreen for the time being
 should be changed once maintain user is ready
 -->
+
+
 
     <TextView
         android:layout_width="match_parent"

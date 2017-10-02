@@ -13,8 +13,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.widget.Spinner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +27,8 @@ import sg.edu.nus.iss.phoenix.core.android.controller.ControlFactory;
 import sg.edu.nus.iss.phoenix.radiopresenter.android.ui.RadioPresenterAdapter;
 import sg.edu.nus.iss.phoenix.radiopresenter.entity.RadioPresenter;
 
+import static android.widget.AdapterView.*;
+
 public class ReviewSelectPresenterScreen extends AppCompatActivity {
     // Tag for logging
     private static final String TAG = sg.edu.nus.iss.phoenix.radiopresenter.android.ui.ReviewSelectPresenterScreen.class.getName();
@@ -32,22 +37,44 @@ public class ReviewSelectPresenterScreen extends AppCompatActivity {
     // private ArrayAdapter<String> adapter = null;
     private ListView mListView;
     private RadioPresenter selectedRP = null;
-
+    private Spinner spinner;
+    private ArrayList<RadioPresenter> radioPresenters;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review_select_presenter);
 
-        ArrayList<RadioPresenter> radioPresenters = new ArrayList<RadioPresenter>();
+
+
         // ArrayList<String> radioProgramNames = new ArrayList<String>();
         // mRPAdapter = new ArrayAdapter<String>(this, R.layout.activity_review_select_presenter,
         //        R.id.maintain_presenter_name_text_view, radioProgramNames);
-        mRPAdapter = new RadioPresenterAdapter(this, radioPresenters);
+
+        //Object[] mStringArray = radioPresenters.toArray();
+       // Log.v(mRPAdapter);
+
+
+      //  mRPAdapter = new RadioPresenterAdapter(this, radioPresenters);
 
         mListView = (ListView) findViewById(R.id.review_select_presenter_list);
         mListView.setAdapter(mRPAdapter);
+        spinner = (Spinner)findViewById(R.id.spinner);
 
-        // Setup the item selection listener
-        mListView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+       spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+           @Override
+           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+               Log.v("presenter",radioPresenters.get(position).getRadioPresenterName());
+           }
+
+           @Override
+           public void onNothingSelected(AdapterView<?> parent) {
+
+           }
+       });
+
+
+
+            // Setup the item selection listener
+        mListView.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 // Log.v(TAG, "Radio presenter at position " + position + " selected.");
@@ -107,10 +134,22 @@ public class ReviewSelectPresenterScreen extends AppCompatActivity {
     }
 
     public void showPresenters(List<RadioPresenter> radioPresenters) {
-        mRPAdapter.clear();
+        this.radioPresenters = (ArrayList<RadioPresenter>) radioPresenters;
+       /* mRPAdapter.clear();
         for (int i = 0; i < radioPresenters.size(); i++) {
             mRPAdapter.add(radioPresenters.get(i));
+        }*/
+       ArrayList<String> presenterNames = new ArrayList<>();
+        for(int i=0;i<radioPresenters.size();i++)
+        {
+            presenterNames.add(radioPresenters.get(i).getRadioPresenterName());
+
         }
+        ArrayAdapter<String> adapter =
+                new ArrayAdapter<String>(getApplicationContext(), R.layout.support_simple_spinner_dropdown_item,presenterNames);
+        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+
+        spinner.setAdapter(adapter);
     }
 }
 

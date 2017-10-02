@@ -31,4 +31,8 @@ public class RadioPresenter {
     public void setRadioPresentermailid(String radioPresentermailid) {
         this.radioPresentermailid = radioPresentermailid;
     }
+    @Override
+    public String toString() {
+        return this.radioPresentername;            // What to display in the Spinner list.
+    }
 }

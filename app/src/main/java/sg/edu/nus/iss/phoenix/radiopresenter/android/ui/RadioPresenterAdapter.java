@@ -37,6 +37,7 @@ public class RadioPresenterAdapter extends ArrayAdapter<RadioPresenter> {
 
         EditText radioPMName = (EditText)listItemView.findViewById(R.id.maintain_presenter_name_text_view);
         radioPMName.setText(currentRP.getRadioPresenterName(), TextView.BufferType.NORMAL);
+
         radioPMName.setTextIsSelectable(false);
         radioPMName.setKeyListener(null); // This disables editing.
 
