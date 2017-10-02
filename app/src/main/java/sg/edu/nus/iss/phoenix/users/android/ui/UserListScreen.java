@@ -88,16 +88,23 @@ public class UserListScreen extends AppCompatActivity{
         // User clicked on a menu option in the app bar overflow menu
         switch (item.getItemId()) {
             // Respond to a click on the "View" menu option
-            case R.id.action_view:
+            case R.id.action_update:
                 if (selectedUser == null) {
                     // Prompt for the selection of a radio program.
                     Toast.makeText(this, "Select a user first! Use arrow keys on emulator", Toast.LENGTH_SHORT).show();
                     Log.v(TAG, "There is no selected user.");
                 }
+
                 else {
                     Log.v(TAG, "Viewing user: " + selectedUser.getName() + ".");
                     ControlFactory.getUserController().selectEditUser(selectedUser);
                 }
+                return true;
+
+            case R.id.action_delete:
+                Log.v(TAG, "Deleting user " + selectedUser.getName() + "...");
+                ControlFactory.getUserController().selectDeleteUser(selectedUser);
+                return true;
         }
         return true;
     }

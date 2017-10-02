@@ -38,17 +38,17 @@ public class UserAdapter extends ArrayAdapter<User>{
         userName.setText(currentUser.getName(),TextView.BufferType.NORMAL);
         userName.setKeyListener(null);
 
-        EditText userDepa = (EditText)listItemView.findViewById(R.id.et_create_department);
-        userDepa.setText(currentUser.getDepartment(),TextView.BufferType.NORMAL);
+        EditText userDepa = (EditText)listItemView.findViewById(R.id.et_create_roles);
+        userDepa.setText(currentUser.getRoles(),TextView.BufferType.NORMAL);
         userDepa.setKeyListener(null);
 
-        EditText userPos = (EditText)listItemView.findViewById(R.id.et_create_pos);
-        userPos.setText(currentUser.getPosition(),TextView.BufferType.NORMAL);
-        userPos.setKeyListener(null);
+//        EditText userPos = (EditText)listItemView.findViewById(R.id.et_create_pos);
+//        userPos.setText(currentUser.getPosition(),TextView.BufferType.NORMAL);
+//        userPos.setKeyListener(null);
 
-        EditText userAddr = (EditText)listItemView.findViewById(R.id.et_create_addr);
-        userAddr.setText(currentUser.getAddress(),TextView.BufferType.NORMAL);
-        userAddr.setKeyListener(null);
+//        EditText userAddr = (EditText)listItemView.findViewById(R.id.et_create_addr);
+//        userAddr.setText(currentUser.getAddress(),TextView.BufferType.NORMAL);
+//        userAddr.setKeyListener(null);
 
         EditText userPassword = (EditText)listItemView.findViewById(R.id.et_create_password);
         userPassword.setText(currentUser.getPassword(),TextView.BufferType.NORMAL);

@@ -35,7 +35,12 @@ public class CreateUserDelegate extends AsyncTask<User,Void,Boolean>{
     @Override
     protected Boolean doInBackground(User... params) {
         Uri builtUri = Uri.parse(PRMS_BASE_URL_USER).buildUpon().build();
-        builtUri = Uri.withAppendedPath(builtUri,"create").buildUpon().build();
+        builtUri = Uri.withAppendedPath(builtUri,"item").buildUpon()
+                .appendQueryParameter("id", params[0].getIdNo())
+                .appendQueryParameter("name", params[0].getName())
+                .appendQueryParameter("password", params[0].getPassword())
+                .appendQueryParameter("roles", params[0].getRoles())
+                .build();
         Log.v(TAG, builtUri.toString());
         URL url = null;
         try {
@@ -49,10 +54,12 @@ public class CreateUserDelegate extends AsyncTask<User,Void,Boolean>{
         try {
             json.put("id",params[0].getIdNo());
             json.put("name",params[0].getName());
-            json.put("department",params[0].getDepartment());
-            json.put("role",params[0].getPosition());
-            json.put("address",params[0].getAddress());
+            //json.put("department",params[0].getDepartment());
+            json.put("roles",params[0].getDepartment());
+            //json.put("address",params[0].getAddress());
             json.put("password",params[0].getPassword());
+
+            Log.v(TAG + " JSON: ",json.toString());
         } catch (JSONException e) {
             Log.v(TAG, e.getMessage());
         }
@@ -63,7 +70,7 @@ public class CreateUserDelegate extends AsyncTask<User,Void,Boolean>{
         try {
             httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setInstanceFollowRedirects(false);
-            httpURLConnection.setRequestMethod("PUT");
+            httpURLConnection.setRequestMethod("POST");
             httpURLConnection.setRequestProperty("Content-Type", "application/json; charset=utf8");
             httpURLConnection.setDoInput(true);
             httpURLConnection.setDoOutput(true);

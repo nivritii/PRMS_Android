@@ -9,30 +9,21 @@ public class User {
     private String idNo;
     private String name;
     private String department;
-    private String position;
-    private String address;
     private String password;
+    private String roles;
 
     public User() {
 
     }
-
-    public User(String idNo, String name, String department, String position, String address, String password) {
+    public User(String idNo, String password, String name,String roles){
         this.idNo = idNo;
-        this.name = name;
-        this.department = department;
-        this.position = position;
-        this.address = address;
+        this.roles = roles;
         this.password = password;
+        this.name = name;
     }
 
-    public User(String idNo, String name, String department, String position, String address) {
-        this.idNo = idNo;
-        this.name = name;
-        this.department = department;
-        this.position = position;
-        this.address = address;
-    }
+
+
 
     public String getIdNo() {
         return idNo;
@@ -46,17 +37,13 @@ public class User {
         return department;
     }
 
-    public String getPosition() {
-        return position;
-    }
 
-    public String getAddress() {
-        return address;
-    }
 
     public String getPassword() {
         return password;
     }
+
+    public String getRoles(){return roles;}
 
     public void setIdNo(String idNo) {
         this.idNo = idNo;
@@ -70,15 +57,11 @@ public class User {
         this.department = department;
     }
 
-    public void setPosition(String position) {
-        this.position = position;
+    public void setRoles(String roles){
+        this.roles=roles;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public void setAge(String password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 }

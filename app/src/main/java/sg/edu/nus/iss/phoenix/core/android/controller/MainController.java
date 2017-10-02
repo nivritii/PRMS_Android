@@ -41,7 +41,9 @@ public class MainController {
 
         ControlFactory.getProgramController().startUseCase();
     }
-    public void selectMaintainUser(){ControlFactory.getUserController().startUseCase();}
+    public void selectMaintainUser(){
+        ControlFactory.getUserController().startUseCase();
+    }
 
     public void maintainedProgram() {
 

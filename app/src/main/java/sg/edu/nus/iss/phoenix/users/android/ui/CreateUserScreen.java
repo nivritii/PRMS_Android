@@ -23,9 +23,8 @@ public class CreateUserScreen extends AppCompatActivity {
 
     private EditText mIdEditText;
     private EditText mNameEditText;
-    private EditText mDeptEditText;
-    private EditText mPosEditText;
-    private EditText mAddrEditText;
+    private EditText mRoleEditText;
+
     private EditText mPasswordEditText;
 
     private User userEdit = null;
@@ -40,9 +39,8 @@ public class CreateUserScreen extends AppCompatActivity {
         // Find all relevant views that we will need to read user input from
         mIdEditText = (EditText) findViewById(R.id.et_create_idno);
         mNameEditText = (EditText) findViewById(R.id.et_create_username);
-        mDeptEditText = (EditText) findViewById(R.id.et_create_department);
-        mPosEditText = (EditText) findViewById(R.id.et_create_pos);
-        mAddrEditText = (EditText) findViewById(R.id.et_create_addr);
+        mRoleEditText = (EditText) findViewById(R.id.et_create_roles);
+
         mPasswordEditText = (EditText) findViewById(R.id.et_create_password);
         // Keep the KeyListener for name EditText so as to enable editing after disabling it.
         mIdEditTextKeyListener = mIdEditText.getKeyListener();
@@ -66,10 +64,11 @@ public class CreateUserScreen extends AppCompatActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
 
-        if (userEdit == null) {
+
             MenuItem menuItem = menu.findItem(R.id.action_delete);
             menuItem.setVisible(false);
-        }
+
+
         return true;
     }
 
@@ -82,18 +81,16 @@ public class CreateUserScreen extends AppCompatActivity {
                 // Save radio program.
                 if (userEdit == null) { // Newly created.
                     Log.v(TAG, "Saving user " + mIdEditText.getText().toString() + "...");
-                    User user = new User(mIdEditText.getText().toString(),mNameEditText.getText().toString(),
-                            mDeptEditText.getText().toString(), mPosEditText.getText().toString(),
-                            mAddrEditText.getText().toString(), mPasswordEditText.getText().toString());
+                    User user = new User(mIdEditText.getText().toString(),mPasswordEditText.getText().toString(),mNameEditText.getText().toString(),
+                            mRoleEditText.getText().toString() );
                     ControlFactory.getUserController().selectCreateUser(user);
                 }
                 else { // Edited.
-                    Log.v(TAG, "Saving user " + userEdit.getName() + "...");
+                    Log.v(TAG, "Update user " + userEdit.getName() + "...");
                     userEdit.setIdNo(mIdEditText.getText().toString());
-                    userEdit.setDepartment(mDeptEditText.getText().toString());
-                    userEdit.setPosition(mPosEditText.getText().toString());
-                    userEdit.setAddress(mAddrEditText.getText().toString());
-                    userEdit.setAge(mPasswordEditText.getText().toString());
+                    userEdit.setName(mNameEditText.getText().toString());
+                    userEdit.setRoles(mRoleEditText.getText().toString());
+                    userEdit.setPassword(mPasswordEditText.getText().toString());
                     ControlFactory.getUserController().selectUpdateUser(userEdit);
                 }
                 return true;
@@ -122,9 +119,7 @@ public class CreateUserScreen extends AppCompatActivity {
         this.userEdit = null;
         mIdEditText.setText("", TextView.BufferType.EDITABLE);
         mNameEditText.setText("", TextView.BufferType.EDITABLE);
-        mDeptEditText.setText("", TextView.BufferType.EDITABLE);
-        mPosEditText.setText("", TextView.BufferType.EDITABLE);
-        mAddrEditText.setText("", TextView.BufferType.EDITABLE);
+        mRoleEditText.setText("", TextView.BufferType.EDITABLE);
         mPasswordEditText.setText("", TextView.BufferType.EDITABLE);
         mIdEditText.setKeyListener(mIdEditTextKeyListener);
     }
@@ -133,10 +128,10 @@ public class CreateUserScreen extends AppCompatActivity {
         this.userEdit = userEdit;
         if (userEdit != null) {
             mIdEditText.setText(userEdit.getIdNo(),TextView.BufferType.NORMAL);
+            mIdEditText.setFocusable(false);
+            mIdEditText.setFocusableInTouchMode(false);
             mNameEditText.setText(userEdit.getName(),TextView.BufferType.EDITABLE);
-            mDeptEditText.setText(userEdit.getDepartment(),TextView.BufferType.EDITABLE);
-            mPosEditText.setText(userEdit.getPosition(),TextView.BufferType.EDITABLE);
-            mAddrEditText.setText(userEdit.getAddress(),TextView.BufferType.EDITABLE);
+            mRoleEditText.setText(userEdit.getRoles(),TextView.BufferType.EDITABLE);
             mPasswordEditText.setText(userEdit.getPassword(),TextView.BufferType.EDITABLE);
             mIdEditText.setKeyListener(null);
         }

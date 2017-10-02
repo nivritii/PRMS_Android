@@ -30,7 +30,7 @@ public class ReviewSelectUserController {
 
     public void onDisplay(ReviewSelectUserScreen reviewSelectUserScreen){
         this.reviewSelectUserScreen = reviewSelectUserScreen;
-        new RetrieveUserDelegate().execute("all");
+        new RetrieveUserDelegate(this).execute("all");
     }
 
     public void userRetrieved(List<User> users){

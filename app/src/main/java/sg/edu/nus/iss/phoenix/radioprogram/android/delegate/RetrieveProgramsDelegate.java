@@ -67,7 +67,7 @@ public class RetrieveProgramsDelegate extends AsyncTask<String, Void, String> {
         } finally {
             if (urlConnection != null) urlConnection.disconnect();
         }
-
+        Log.v(TAG, jsonResp.toString());
         return jsonResp;
     }
 
@@ -79,7 +79,7 @@ public class RetrieveProgramsDelegate extends AsyncTask<String, Void, String> {
             try {
                 JSONObject reader = new JSONObject(result);
                 JSONArray rpArray = reader.getJSONArray("rpList");
-
+                Log.v(TAG + " JSONArray", rpArray.toString());
                 for (int i = 0; i < rpArray.length(); i++) {
                     JSONObject rpJson = rpArray.getJSONObject(i);
                     String description = rpJson.getString("description");

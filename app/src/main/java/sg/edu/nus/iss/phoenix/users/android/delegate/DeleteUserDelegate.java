@@ -39,8 +39,10 @@ public class DeleteUserDelegate extends AsyncTask<String,Void,Boolean>{
             return new Boolean(false);
         }
         Uri builtUri = Uri.parse(PRMS_BASE_URL_USER).buildUpon().build();
-        builtUri = Uri.withAppendedPath(builtUri,"delete").buildUpon().build();
-        builtUri = Uri.withAppendedPath(builtUri, name).buildUpon().build();
+        builtUri = Uri.withAppendedPath(builtUri,"item").buildUpon()
+                .appendQueryParameter("id", params[0])
+                .build();
+
         Log.v(TAG, builtUri.toString());
         URL url = null;
         try {

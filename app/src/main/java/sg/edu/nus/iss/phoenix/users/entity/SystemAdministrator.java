@@ -12,8 +12,8 @@ public class SystemAdministrator extends User {
         this.authority = authority;
     }
 
-    public SystemAdministrator(String idNo, String name, String department, String position, String address, String age, String authority) {
-        super(idNo, name, department, position, address, age);
+    public SystemAdministrator(String idNo, String name, String department,  String authority) {
+        //super(idNo, name, department);
         this.authority = authority;
     }
 

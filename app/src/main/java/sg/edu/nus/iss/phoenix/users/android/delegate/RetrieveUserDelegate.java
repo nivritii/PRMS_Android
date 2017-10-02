@@ -44,9 +44,11 @@ public class RetrieveUserDelegate extends AsyncTask<String, Void, String> {
         this.userController = userController;
     }*/
 
-    public void RetrieveUserDelegate(ReviewSelectUserController reviewSelectUserController){
+
+    public  RetrieveUserDelegate(ReviewSelectUserController reviewSelectUserController){
         this.userController = null;
         this.reviewSelectUserController = reviewSelectUserController;
+
     }
 
     @Override
@@ -76,7 +78,7 @@ public class RetrieveUserDelegate extends AsyncTask<String, Void, String> {
         } finally {
             if (urlConnection != null) urlConnection.disconnect();
         }
-
+        Log.v(TAG + " doInBackground", jsonResp.toString());
         return jsonResp;
     }
 
@@ -86,18 +88,23 @@ public class RetrieveUserDelegate extends AsyncTask<String, Void, String> {
 
         if (result != null && !result.equals("")) {
             try {
-                JSONObject reader = new JSONObject(result);
-                JSONArray rpArray = reader.getJSONArray("userList");
-
-                for (int i = 0; i < rpArray.length(); i++) {
+                //JSONObject reader = new JSONObject(result);
+                JSONArray rpArray = new JSONArray(result);
+                //JSONArray rpArray = reader.getJSONArray("userList");
+                Log.v(TAG + " FIRST", rpArray.toString());
+                for (int i = 0; i < rpArray.length(); i++){
                     JSONObject userJson = rpArray.getJSONObject(i);
                     String id = userJson.getString("id");
                     String name = userJson.getString("name");
-                    String department = userJson.getString("dept");
-                    String position = userJson.getString("role");
-                    String addr = userJson.getString("addr");
-
-                    users.add(new User(id, name, department,position,addr));
+                    String password = userJson.getString("password");
+                    JSONArray roles = userJson.getJSONArray("roles");
+                    String role = new String();
+                    for (int j = 0; j < roles.length(); j++){
+                        role += roles.getJSONObject(j).getString("role");
+                        role += ": ";
+                    }
+                    Log.v(TAG , role);
+                    users.add(new User(id, password, name , role));
                 }
             } catch (JSONException e) {
                 Log.v(TAG, e.getMessage());
