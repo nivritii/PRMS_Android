@@ -36,7 +36,9 @@ public class RetrievePPDelegate extends AsyncTask<String, Void, List<String>> {
     @Override
     protected List<String> doInBackground(String... params) {
         Uri builtUri1 = Uri.parse( PRMS_BASE_URL_USER).buildUpon().build();
-        Uri builtUri = Uri.withAppendedPath(builtUri1, params[0]).buildUpon().build();
+        Uri builtUri = Uri.withAppendedPath(builtUri1, "manager").buildUpon()
+                .appendQueryParameter("role", params[0])
+                .build();
         Log.v(TAG, builtUri.toString());
         URL url = null;
         try {
@@ -69,20 +71,20 @@ public class RetrievePPDelegate extends AsyncTask<String, Void, List<String>> {
     }
 
     private List<String> formListRP(String jsonResp){
-        List<String> radioPrograms = new ArrayList<>();
+        List<String> ppNames = new ArrayList<>();
 
         if (jsonResp != null && !jsonResp.equals("")) {
             try {
-                JSONObject reader = new JSONObject(jsonResp);
-                JSONArray rpArray = reader.getJSONArray("userList");
-
+               // JSONObject reader = new JSONObject(jsonResp);
+               // JSONArray rpArray = reader.getJSONArray("userList");
+                JSONArray rpArray = new JSONArray(jsonResp);
                 for (int i = 0; i < rpArray.length(); i++) {
                     JSONObject rpJson = rpArray.getJSONObject(i);
                     //String description = rpJson.getString("description");
-                    String name = rpJson.getString("name");
+                    String name = rpJson.getString("id");
                     //String typicalDuration = rpJson.getString("typicalDuration");
                     Log.v(TAG, name);
-                    radioPrograms.add(name);
+                    ppNames.add(name);
                 }
             } catch (JSONException e) {
                 Log.v(TAG, e.getMessage());
@@ -91,7 +93,7 @@ public class RetrievePPDelegate extends AsyncTask<String, Void, List<String>> {
             Log.v(TAG, "JSON response error.");
         }
 
-        return radioPrograms;
+        return ppNames;
 
         /*if (programController != null)
             programController.programsRetrieved(radioPrograms);

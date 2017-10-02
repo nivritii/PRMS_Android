@@ -75,8 +75,8 @@ public class ScheduleProgramController {
 
         try {
             radioPrograms = new RetrieveRadioProgramDelegate(this).execute("all").get();
-            presenters = new RetrievePPDelegate(this).execute("presenters").get();
-            producers = new RetrievePPDelegate(this).execute("producers").get();
+            presenters = new RetrievePPDelegate(this).execute("presenter").get();
+            producers = new RetrievePPDelegate(this).execute("producer").get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -93,8 +93,8 @@ public class ScheduleProgramController {
 
         try {
             radioPrograms = new RetrieveRadioProgramDelegate(this).execute("all").get();
-            presenters = new RetrievePPDelegate(this).execute("presenters").get();
-            producers = new RetrievePPDelegate(this).execute("producers").get();
+            presenters = new RetrievePPDelegate(this).execute("presenter").get();
+            producers = new RetrievePPDelegate(this).execute("producer").get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -164,6 +164,6 @@ public class ScheduleProgramController {
     public void selectCancelCreateEditScheduleProgram(ScheduleProgram scheduleProgram) {
         // Go back to ProgramList screen with refreshed programs.
         sp2edit = scheduleProgram;
-       // startUseCase();
+        startUseCase();
     }
 }
