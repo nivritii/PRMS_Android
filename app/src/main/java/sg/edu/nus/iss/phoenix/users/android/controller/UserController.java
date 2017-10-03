@@ -29,13 +29,31 @@ public class UserController {
 
     public void startUseCase(){
         userEdit = null;
+
         Intent intent = new Intent(MainController.getApp(),UserListScreen.class);
+
+        MainController.displayScreen(intent);
+    }
+
+    public void startUseCase(String username, String roles){
+        userEdit = null;
+
+        Intent intent = new Intent(MainController.getApp(),UserListScreen.class);
+        intent.putExtra("username",username);
+        intent.putExtra("roles", roles);
+
         MainController.displayScreen(intent);
     }
 
     public void onDisplayUserList(UserListScreen userListScreen){
         this.userListScreen = userListScreen;
         new RetrieveUserDelegate(this).execute("item");
+    }
+
+    public void onDisplayUserList(UserListScreen userListScreen, String username){
+        this.userListScreen = userListScreen;
+        new RetrieveUserDelegate(this).execute("single", username);
+
     }
 
     public void usersRetrieved(List<User> users){
@@ -48,11 +66,13 @@ public class UserController {
         MainController.displayScreen(intent);
     }
 
-    public void selectEditUser(User user) {
+    public void selectEditUser(User user,String username, String roles) {
         userEdit = user;
         Log.v(TAG, "Editing user: " + user.getName() + "...");
 
         Intent intent = new Intent(MainController.getApp(), CreateUserScreen.class);
+        intent.putExtra("roles",roles);
+        intent.putExtra("username",username);
 /*        Bundle b = new Bundle();
         b.putString("Name", radioProgram.getRadioProgramName());
         b.putString("Description", radioProgram.getRadioProgramDescription());
@@ -96,8 +116,8 @@ public class UserController {
         startUseCase();
     }
 
-    public void selectCancelCreateEditUser() {
-        startUseCase();
+    public void selectCancelCreateEditUser(String username, String roles) {
+        startUseCase(username, roles);
     }
 
     public void maintainedUser() {

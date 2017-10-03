@@ -1,5 +1,6 @@
 package sg.edu.nus.iss.phoenix.scheduleprogram.android.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -31,11 +32,17 @@ public class WeeklySchListScreen extends AppCompatActivity {
     private ListView mListView;
     private WeeklyScheduleAdapter mWSAdapter;
     private WeeklySchedule selectedWS = null;
+    private String username;
+    private String roles;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weekly_schedule_list);
+
+        Intent intent = getIntent();
+        username = intent.getStringExtra("username");
+        roles = intent.getStringExtra("roles");
 
         ArrayList<WeeklySchedule> weeklySchedules = new ArrayList<WeeklySchedule>();
         mWSAdapter = new WeeklyScheduleAdapter(this, weeklySchedules);
@@ -45,7 +52,10 @@ public class WeeklySchListScreen extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ControlFactory.getScheduleProgramController().selectCreateScheduleProgram();
+                if (roles.contains("manager"))
+                    ControlFactory.getScheduleProgramController().selectCreateScheduleProgram();
+                else Toast.makeText(getApplicationContext(), "No Priviledge",
+                        Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -94,7 +104,7 @@ public class WeeklySchListScreen extends AppCompatActivity {
                 }
                 else {
                     Log.v(TAG, "Viewing weekly slot: " + selectedWS.getStartDate()  + "...");
-                    ControlFactory.getScheduleProgramController().selectWeeklyScheduleSlot(selectedWS);
+                    ControlFactory.getScheduleProgramController().selectWeeklyScheduleSlot(selectedWS, username, roles);
                 }
                 return true;
 

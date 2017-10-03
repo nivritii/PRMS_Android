@@ -1,5 +1,6 @@
 package sg.edu.nus.iss.phoenix.users.android.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.KeyListener;
@@ -28,6 +29,8 @@ public class CreateUserScreen extends AppCompatActivity {
     private EditText mPasswordEditText;
 
     private User userEdit = null;
+    private String roles;
+    private String username;
 
     KeyListener mIdEditTextKeyListener = null;
 
@@ -35,6 +38,10 @@ public class CreateUserScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_user);
+
+        Intent intent = getIntent();
+        username = intent.getStringExtra("username");
+        roles = intent.getStringExtra("roles");
 
         // Find all relevant views that we will need to read user input from
         mIdEditText = (EditText) findViewById(R.id.et_create_idno);
@@ -102,7 +109,7 @@ public class CreateUserScreen extends AppCompatActivity {
             // Respond to a click on the "Cancel" menu option
             case R.id.action_cancel:
                 Log.v(TAG, "Canceling creating/editing user...");
-                ControlFactory.getUserController().selectCancelCreateEditUser();
+                ControlFactory.getUserController().selectCancelCreateEditUser(username, roles);
                 return true;
         }
 
@@ -112,7 +119,7 @@ public class CreateUserScreen extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Log.v(TAG, "Canceling creating/editing user...");
-        ControlFactory.getUserController().selectCancelCreateEditUser();
+        ControlFactory.getUserController().selectCancelCreateEditUser(username, roles);
     }
 
     public void createUser() {
