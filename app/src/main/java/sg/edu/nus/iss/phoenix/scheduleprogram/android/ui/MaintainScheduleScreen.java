@@ -106,7 +106,8 @@ public class MaintainScheduleScreen extends AppCompatActivity {
                     ControlFactory.getScheduleProgramController().selectCreateScheduleProgram(sp);
                 }
                 else { // Edited.
-                    Log.v(TAG, "Saving program slot " + sp2edit.getName() + "...");
+                    Log.v(TAG, "Saving program slot " + spinnerRp.getSelectedItem().toString()+ "...");
+                    sp2edit.setName(spinnerRp.getSelectedItem().toString());
                     sp2edit.setDateOfProgram(mSPDOPEditText.getText().toString());
                     sp2edit.setStartTime(mSPStartTimeEditText.getText().toString());
                     sp2edit.setDuration(mSPDurationEditText.getText().toString());
@@ -139,9 +140,7 @@ public class MaintainScheduleScreen extends AppCompatActivity {
     }
 
     private List<String> sortList(List<String> stringList, String first){
-        String pos0 = stringList.get(0);
         stringList.set(0, first);
-        stringList.add(1, pos0);
         return stringList;
     }
 
