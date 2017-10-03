@@ -1,11 +1,13 @@
 package sg.edu.nus.iss.phoenix.core.android.ui;
 
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import sg.edu.nus.iss.phoenix.R;
 import sg.edu.nus.iss.phoenix.core.android.controller.ControlFactory;
@@ -21,12 +23,16 @@ public class MainScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Intent intent = getIntent();
+        final String roles = intent.getStringExtra("roles");
+
         mbtn_radio_program = (Button) findViewById(R.id.button_radio_program);
         // Set a click listener on Maintain Program Button.
         mbtn_radio_program.setOnClickListener(new View.OnClickListener() {
             // The code in this method will be executed when the numbers category is clicked on.
             @Override
             public void onClick(View view) {
+
                 ControlFactory.getMainController().selectMaintainProgram();
             }
 
@@ -46,7 +52,10 @@ public class MainScreen extends AppCompatActivity {
         mbtn_user = (Button)findViewById(R.id.button_user);
         mbtn_user.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                ControlFactory.getMainController().selectMaintainUser();
+                if(roles.contains("admin"))
+                    ControlFactory.getMainController().selectMaintainUser();
+                else Toast.makeText(getApplicationContext(), "No Priviledge",
+                        Toast.LENGTH_SHORT).show();
             }
         });
 

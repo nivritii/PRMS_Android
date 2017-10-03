@@ -15,6 +15,12 @@ public class User {
     public User() {
 
     }
+
+    public User(String idNo, String roles){
+        this.idNo = idNo;
+        this.roles = roles;
+    }
+
     public User(String idNo, String password, String name,String roles){
         this.idNo = idNo;
         this.roles = roles;
