@@ -69,17 +69,16 @@ public class LoginDelegate extends AsyncTask<String, Void, String> {
             String authPass = "true";
             String authStatus = reader.getString("authStatus");
             String username = reader.getString("username");
-           // String roles = reader.getString("role");
             /*
             String authStatus = "true";
             String authPass = "true";
             String username = "pointyhead";
 */            if (authStatus.equals(authPass)) {
-                Log.v(TAG, "Logged in as " + username + "");
-                loginController.loggedIn(true, username,"");
+                Log.v(TAG, "Logged in as " + username + ".");
+                loginController.loggedIn(true, username);
             } else {
                 Log.v(TAG, "Failed to log in.");
-                loginController.loggedIn(false, username,"");
+                loginController.loggedIn(false, username);
             }
         } catch (JSONException e) {
             Log.v(TAG, e.getMessage());

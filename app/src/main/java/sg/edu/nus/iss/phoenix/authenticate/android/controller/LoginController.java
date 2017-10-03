@@ -24,11 +24,11 @@ public class LoginController {
         new LoginDelegate(this).execute(userName, password);
     }
 
-    public void loggedIn(boolean success, String username, String roles) {
+    public void loggedIn(boolean success, String username) {
         loginScreen.hideLoadingIndicator();
         if (!success) { loginScreen.showErrorMessage(); return; }
 
-        ControlFactory.getMainController().startUseCase(username, roles);
+        ControlFactory.getMainController().startUseCase(username);
     }
 
     public void logout() {

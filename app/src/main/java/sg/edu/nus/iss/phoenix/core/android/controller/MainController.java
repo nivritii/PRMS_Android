@@ -25,12 +25,10 @@ public class MainController {
         app.startActivity(intent);
     }
 
-    public void startUseCase(String username, String roles) {
+    public void startUseCase(String username) {
         this.username = username;
 
         Intent intent = new Intent(MainController.getApp(), MainScreen.class);
-        intent.putExtra("roles",roles);
-
         MainController.displayScreen(intent);
     }
 
@@ -49,9 +47,9 @@ public class MainController {
 
     public void maintainedProgram() {
 
-        startUseCase(username,"");
+        startUseCase(username);
     }
-    public void maintainedUser(){startUseCase(username,"");}
+    public void maintainedUser(){startUseCase(username);}
 
     public void selectLogout() {
         username = "<not logged in>";
@@ -66,10 +64,7 @@ public class MainController {
 
     // This is a dummy operation to test the invocation of Review Select Radio Program use case.
     public void selectedProgram(RadioProgram rpSelected) {
-        startUseCase(username,"");
+        startUseCase(username);
     }
-
-    public void selectedUser(User userSelected) {
-        startUseCase(username,"");
-    }
+    public void selectedUser(User userSelected) { startUseCase(username);}
 }
