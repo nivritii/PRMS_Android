@@ -44,10 +44,20 @@ public class ScheduleProgramController {
     public static List<String> presenters;
     public static List<String> producers;
 
+    public void startUseCase(String username, String roles) {
+        sp2edit = null;
+
+        Intent intent = new Intent(MainController.getApp(), WeeklySchListScreen.class);
+        intent.putExtra("roles",roles);
+        intent.putExtra("username", username);
+        MainController.displayScreen(intent);
+    }
+
     public void startUseCase() {
         sp2edit = null;
 
         Intent intent = new Intent(MainController.getApp(), WeeklySchListScreen.class);
+
         MainController.displayScreen(intent);
     }
 
@@ -106,11 +116,13 @@ public class ScheduleProgramController {
         MainController.displayScreen(intent);
     }
 
-    public void selectWeeklyScheduleSlot(WeeklySchedule weeklySchedule){
+    public void selectWeeklyScheduleSlot(WeeklySchedule weeklySchedule, String username, String roles){
         ws2view = weeklySchedule;
         Log.v(TAG, "Viewing Weekly slots: " + weeklySchedule.getStartDate() + "..." );
 
         Intent intent = new Intent(MainController.getApp(), ScheduleListScreen.class);
+        intent.putExtra("username",username);
+        intent.putExtra("roles",roles);
         MainController.displayScreen(intent);
     }
 

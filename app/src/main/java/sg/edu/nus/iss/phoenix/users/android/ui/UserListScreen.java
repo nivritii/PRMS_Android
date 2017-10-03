@@ -1,5 +1,6 @@
 package sg.edu.nus.iss.phoenix.users.android.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -29,11 +30,17 @@ public class UserListScreen extends AppCompatActivity{
     private ListView mListView;
     private UserAdapter mUserAdapter;
     private User selectedUser = null;
+    private String username;
+    private String roles;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_userlist);
+
+        Intent intent = getIntent();
+        username = intent.getStringExtra("username");
+        roles = intent.getStringExtra("username");
 
         ArrayList<User> users = new ArrayList<User>();
         mUserAdapter = new UserAdapter(this, users);
@@ -43,7 +50,12 @@ public class UserListScreen extends AppCompatActivity{
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ControlFactory.getUserController().selectCreateUser();
+                if (roles.contains("admin")) {
+                    ControlFactory.getUserController().selectCreateUser();
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "No priviledge", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -71,8 +83,11 @@ public class UserListScreen extends AppCompatActivity{
         super.onPostCreate(savedInstanceState);
         mListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         mListView.setSelection(0);
-
-        ControlFactory.getUserController().onDisplayUserList(this);
+        if (roles.contains("admin")) {
+            ControlFactory.getUserController().onDisplayUserList(this);
+        }else{
+            ControlFactory.getUserController().onDisplayUserList(this, username);
+        }
     }
 
     @Override
@@ -96,8 +111,13 @@ public class UserListScreen extends AppCompatActivity{
                 }
 
                 else {
-                    Log.v(TAG, "Viewing user: " + selectedUser.getName() + ".");
-                    ControlFactory.getUserController().selectEditUser(selectedUser);
+                    //if (roles.contains("admin") || username.equals(selectedUser.getIdNo())) {
+                        Log.v(TAG, "Viewing user: " + selectedUser.getName() + ".");
+                        ControlFactory.getUserController().selectEditUser(selectedUser,username,roles);
+                    //}
+                    //else{
+                     //   Toast.makeText(this, username + " " + selectedUser.getName(), Toast.LENGTH_SHORT).show();
+                    //}
                 }
                 return true;
 

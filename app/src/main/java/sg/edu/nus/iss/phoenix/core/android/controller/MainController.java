@@ -30,6 +30,7 @@ public class MainController {
 
         Intent intent = new Intent(MainController.getApp(), MainScreen.class);
         intent.putExtra("roles", roles);
+        intent.putExtra("username",username);
         MainController.displayScreen(intent);
     }
 
@@ -42,8 +43,8 @@ public class MainController {
 
         ControlFactory.getProgramController().startUseCase();
     }
-    public void selectMaintainUser(){
-        ControlFactory.getUserController().startUseCase();
+    public void selectMaintainUser(String username, String roles){
+        ControlFactory.getUserController().startUseCase(username, roles);
     }
 
     public void maintainedProgram() {
@@ -57,9 +58,9 @@ public class MainController {
         ControlFactory.getLoginController().logout();
     }
 
-    public void selectMaintainSchedule() {
+    public void selectMaintainSchedule(String username,String roles) {
         // This is the placeholder for starting the Maintain Schedule use case.
-       ControlFactory.getScheduleProgramController().startUseCase();
+       ControlFactory.getScheduleProgramController().startUseCase(username, roles);
 
     }
 

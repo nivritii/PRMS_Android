@@ -1,5 +1,6 @@
 package sg.edu.nus.iss.phoenix.scheduleprogram.android.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -17,8 +18,6 @@ import java.util.List;
 
 import sg.edu.nus.iss.phoenix.R;
 import sg.edu.nus.iss.phoenix.core.android.controller.ControlFactory;
-import sg.edu.nus.iss.phoenix.radioprogram.android.ui.ProgramListScreen;
-import sg.edu.nus.iss.phoenix.radioprogram.entity.RadioProgram;
 import sg.edu.nus.iss.phoenix.scheduleprogram.entity.ScheduleProgram;
 
 /**
@@ -32,11 +31,17 @@ public class ScheduleListScreen extends AppCompatActivity{
     private ListView mListView;
     private ScheduleProgramAdapter mSPAdapter;
     private ScheduleProgram selectedSP = null;
+    private String username ;
+    private String roles;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule_list);
+
+        Intent intent = getIntent();
+        username = intent.getStringExtra("username");
+        roles = intent.getStringExtra("roles");
 
         ArrayList<ScheduleProgram> schedulePrograms = new ArrayList<ScheduleProgram>();
         mSPAdapter = new ScheduleProgramAdapter(this, schedulePrograms);
@@ -94,8 +99,15 @@ public class ScheduleListScreen extends AppCompatActivity{
                     Log.v(TAG, "There is no selected program slot.");
                 }
                 else {
-                    Log.v(TAG, "Viewing program slot: " + selectedSP.getName()+selectedSP.getPresenter()  + "...");
-                    ControlFactory.getScheduleProgramController().selectEditScheduleProgram(selectedSP);
+                    if (selectedSP.getPresenter().equals(username) || selectedSP.getProducer().equals(username)
+                            || roles.contains("manager")) {
+                        Log.v(TAG, "Viewing program slot: " + selectedSP.getName() + selectedSP.getPresenter() + "...");
+                        ControlFactory.getScheduleProgramController().selectEditScheduleProgram(selectedSP);
+                    }
+                    else {
+                        Log.v(TAG, "Viewing program slot False: " + selectedSP.getName() + selectedSP.getPresenter() + " No Priviledge");
+                        Toast.makeText(this, "No Priviledge", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 return true;
 

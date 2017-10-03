@@ -25,6 +25,8 @@ public class MainScreen extends AppCompatActivity {
 
         Intent intent = getIntent();
         final String roles = intent.getStringExtra("roles");
+        final String username = intent.getStringExtra("username");
+
 
         mbtn_radio_program = (Button) findViewById(R.id.button_radio_program);
         // Set a click listener on Maintain Program Button.
@@ -44,7 +46,7 @@ public class MainScreen extends AppCompatActivity {
             // The code in this method will be executed when the numbers category is clicked on.
             @Override
             public void onClick(View view) {
-                ControlFactory.getMainController().selectMaintainSchedule();
+                ControlFactory.getMainController().selectMaintainSchedule(username,roles);
             }
 
         });
@@ -52,10 +54,8 @@ public class MainScreen extends AppCompatActivity {
         mbtn_user = (Button)findViewById(R.id.button_user);
         mbtn_user.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                if(roles.contains("admin"))
-                    ControlFactory.getMainController().selectMaintainUser();
-                else Toast.makeText(getApplicationContext(), "No Priviledge",
-                        Toast.LENGTH_SHORT).show();
+                ControlFactory.getMainController().selectMaintainUser(username, roles);
+
             }
         });
 
