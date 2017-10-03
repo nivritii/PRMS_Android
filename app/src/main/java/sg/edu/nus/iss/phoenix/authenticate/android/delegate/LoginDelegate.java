@@ -15,6 +15,7 @@ import java.net.URL;
 import java.util.Scanner;
 
 import sg.edu.nus.iss.phoenix.authenticate.android.controller.LoginController;
+import sg.edu.nus.iss.phoenix.users.entity.User;
 
 import static sg.edu.nus.iss.phoenix.core.android.delegate.DelegateHelper.PRMS_BASE_URL_AUTHENTICATE;
 
@@ -69,16 +70,18 @@ public class LoginDelegate extends AsyncTask<String, Void, String> {
             String authPass = "true";
             String authStatus = reader.getString("authStatus");
             String username = reader.getString("username");
+            String roles = reader.getString("role");
+            //User loginUser = new User(username,roles);
             /*
             String authStatus = "true";
             String authPass = "true";
             String username = "pointyhead";
 */            if (authStatus.equals(authPass)) {
                 Log.v(TAG, "Logged in as " + username + ".");
-                loginController.loggedIn(true, username);
+                loginController.loggedIn(true, username, roles);
             } else {
                 Log.v(TAG, "Failed to log in.");
-                loginController.loggedIn(false, username);
+                loginController.loggedIn(false, username, roles);
             }
         } catch (JSONException e) {
             Log.v(TAG, e.getMessage());

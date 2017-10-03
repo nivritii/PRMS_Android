@@ -8,6 +8,7 @@ import sg.edu.nus.iss.phoenix.authenticate.android.ui.LoginScreen;
 import sg.edu.nus.iss.phoenix.core.android.controller.ControlFactory;
 import sg.edu.nus.iss.phoenix.core.android.ui.MainScreen;
 import sg.edu.nus.iss.phoenix.core.android.controller.MainController;
+import sg.edu.nus.iss.phoenix.users.entity.User;
 
 public class LoginController {
     // Tag for logging.
@@ -24,11 +25,11 @@ public class LoginController {
         new LoginDelegate(this).execute(userName, password);
     }
 
-    public void loggedIn(boolean success, String username) {
+    public void loggedIn(boolean success, String username, String roles) {
         loginScreen.hideLoadingIndicator();
         if (!success) { loginScreen.showErrorMessage(); return; }
 
-        ControlFactory.getMainController().startUseCase(username);
+        ControlFactory.getMainController().startUseCase(username, roles);
     }
 
     public void logout() {
