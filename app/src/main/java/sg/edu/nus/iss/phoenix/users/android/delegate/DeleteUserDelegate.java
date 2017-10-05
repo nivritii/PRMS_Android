@@ -22,6 +22,9 @@ import static sg.edu.nus.iss.phoenix.core.android.delegate.DelegateHelper.PRMS_B
 public class DeleteUserDelegate extends AsyncTask<String,Void,Boolean>{
     private static final String TAG = DeleteUserDelegate.class.getName();
 
+    private String username;
+    private String roles;
+
     private final UserController userController;
 
     public DeleteUserDelegate(UserController userController){
@@ -30,6 +33,8 @@ public class DeleteUserDelegate extends AsyncTask<String,Void,Boolean>{
 
     @Override
     protected Boolean doInBackground(String... params) {
+        username = params[1];
+        roles = params[2];
 
         String name = null;
         try {
@@ -74,7 +79,7 @@ public class DeleteUserDelegate extends AsyncTask<String,Void,Boolean>{
 
     @Override
     protected void onPostExecute(Boolean result) {
-        userController.userDeleted(result.booleanValue());
+        userController.userDeleted(result.booleanValue(), username, roles);
     }
 
 }

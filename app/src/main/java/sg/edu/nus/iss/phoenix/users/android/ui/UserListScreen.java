@@ -40,7 +40,7 @@ public class UserListScreen extends AppCompatActivity{
 
         Intent intent = getIntent();
         username = intent.getStringExtra("username");
-        roles = intent.getStringExtra("username");
+        roles = intent.getStringExtra("roles");
 
         ArrayList<User> users = new ArrayList<User>();
         mUserAdapter = new UserAdapter(this, users);
@@ -51,7 +51,7 @@ public class UserListScreen extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 if (roles.contains("admin")) {
-                    ControlFactory.getUserController().selectCreateUser();
+                    ControlFactory.getUserController().selectCreateUser(username, roles);
                 }
                 else{
                     Toast.makeText(getApplicationContext(), "No priviledge", Toast.LENGTH_SHORT).show();
@@ -83,6 +83,7 @@ public class UserListScreen extends AppCompatActivity{
         super.onPostCreate(savedInstanceState);
         mListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         mListView.setSelection(0);
+        Log.v(TAG + " UserListScreen", username + " " + roles);
         if (roles.contains("admin")) {
             ControlFactory.getUserController().onDisplayUserList(this);
         }else{
@@ -123,7 +124,8 @@ public class UserListScreen extends AppCompatActivity{
 
             case R.id.action_delete:
                 Log.v(TAG, "Deleting user " + selectedUser.getName() + "...");
-                ControlFactory.getUserController().selectDeleteUser(selectedUser);
+                User userLogin = new User(username, roles);
+                ControlFactory.getUserController().selectDeleteUser(selectedUser, username, roles);
                 return true;
         }
         return true;

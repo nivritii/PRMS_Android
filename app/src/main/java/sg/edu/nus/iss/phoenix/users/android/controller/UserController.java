@@ -47,7 +47,7 @@ public class UserController {
 
     public void onDisplayUserList(UserListScreen userListScreen){
         this.userListScreen = userListScreen;
-        new RetrieveUserDelegate(this).execute("item");
+        new RetrieveUserDelegate(this).execute("item","");
     }
 
     public void onDisplayUserList(UserListScreen userListScreen, String username){
@@ -60,9 +60,11 @@ public class UserController {
         userListScreen.showUsers(users);
     }
 
-    public void selectCreateUser() {
+    public void selectCreateUser(String username, String roles) {
         userEdit = null;
         Intent intent = new Intent(MainController.getApp(),CreateUserScreen.class);
+        intent.putExtra("username",username);
+        intent.putExtra("roles",roles);
         MainController.displayScreen(intent);
     }
 
@@ -90,30 +92,34 @@ public class UserController {
             createUserScreen.editUser(userEdit);
     }
 
-    public void selectUpdateUser(User user) {
-        new UpdateUserDelegate(this).execute(user);
+    public void selectUpdateUser(User user, User userLogin) {
+        new UpdateUserDelegate(this).execute(user,userLogin);
     }
 
-    public void selectDeleteUser(User user) {
-        new DeleteUserDelegate(this).execute(user.getIdNo());
+    public void selectDeleteUser(User user, String username, String roles) {
+        new DeleteUserDelegate(this).execute(user.getIdNo(), username, roles);
     }
 
-    public void userDeleted(boolean success) {
+    public void userDeleted(boolean success, String username, String roles) {
         // Go back to UserList screen with refreshed users.
-        startUseCase();
+        startUseCase(username, roles);
     }
 
-    public void userUpdated(boolean success) {
+    public void userUpdated(boolean success, String username, String roles) {
         // Go back to UserList screen with refreshed users.
-        startUseCase();
+        startUseCase(username, roles);
     }
 
-    public void selectCreateUser(User user) {
+    public void selectSaveUser(User user, User userLogin) {
+        new CreateUserDelegate(this).execute(user,userLogin);
+    }
+
+    public void selectCreateUser(User user, String username, String roles) {
         new CreateUserDelegate(this).execute(user);
     }
 
-    public void userCreated(boolean success) {
-        startUseCase();
+    public void userCreated(boolean success, String username, String roles) {
+        startUseCase(username, roles);
     }
 
     public void selectCancelCreateEditUser(String username, String roles) {

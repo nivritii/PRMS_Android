@@ -90,7 +90,8 @@ public class CreateUserScreen extends AppCompatActivity {
                     Log.v(TAG, "Saving user " + mIdEditText.getText().toString() + "...");
                     User user = new User(mIdEditText.getText().toString(),mPasswordEditText.getText().toString(),mNameEditText.getText().toString(),
                             mRoleEditText.getText().toString() );
-                    ControlFactory.getUserController().selectCreateUser(user);
+                    User userLogin = new User(username, roles);
+                    ControlFactory.getUserController().selectSaveUser(user, userLogin);
                 }
                 else { // Edited.
                     Log.v(TAG, "Update user " + userEdit.getName() + "...");
@@ -98,13 +99,15 @@ public class CreateUserScreen extends AppCompatActivity {
                     userEdit.setName(mNameEditText.getText().toString());
                     userEdit.setRoles(mRoleEditText.getText().toString());
                     userEdit.setPassword(mPasswordEditText.getText().toString());
-                    ControlFactory.getUserController().selectUpdateUser(userEdit);
+                    User userLogin = new User(username, roles);
+                    ControlFactory.getUserController().selectUpdateUser(userEdit, userLogin);
                 }
                 return true;
             // Respond to a click on the "Delete" menu option
             case R.id.action_delete:
                 Log.v(TAG, "Deleting user " + userEdit.getName() + "...");
-                ControlFactory.getUserController().selectDeleteUser(userEdit);
+                User userLogin = new User(username, roles);
+                ControlFactory.getUserController().selectDeleteUser(userEdit, username,roles);
                 return true;
             // Respond to a click on the "Cancel" menu option
             case R.id.action_cancel:

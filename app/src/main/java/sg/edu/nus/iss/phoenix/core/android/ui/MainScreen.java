@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -26,7 +27,7 @@ public class MainScreen extends AppCompatActivity {
         Intent intent = getIntent();
         final String roles = intent.getStringExtra("roles");
         final String username = intent.getStringExtra("username");
-
+        Log.v("MainScreen",username + " " + roles);
 
         mbtn_radio_program = (Button) findViewById(R.id.button_radio_program);
         // Set a click listener on Maintain Program Button.
