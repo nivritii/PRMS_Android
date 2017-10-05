@@ -80,7 +80,7 @@ public class ScheduleProgramController {
         weeklySchListScreen.showWeeklySchedules(weeklySchedules);
     }
 
-    public void selectCreateScheduleProgram() {
+    public void selectCreateScheduleProgram(String username, String roles) {
         sp2edit = null;
 
         try {
@@ -94,10 +94,12 @@ public class ScheduleProgramController {
         }
 
         Intent intent = new Intent(MainController.getApp(), MaintainScheduleScreen.class);
+        intent.putExtra("username",username);
+        intent.putExtra("roles",roles);
         MainController.displayScreen(intent);
     }
 
-    public void selectEditScheduleProgram(ScheduleProgram scheduleProgram) {
+    public void selectEditScheduleProgram(ScheduleProgram scheduleProgram, String username, String roles) {
         sp2edit = scheduleProgram;
         Log.v(TAG, "Editing program slot: " + scheduleProgram.getName() + "..." );
 
@@ -113,6 +115,8 @@ public class ScheduleProgramController {
 
 
         Intent intent = new Intent(MainController.getApp(), MaintainScheduleScreen.class);
+        intent.putExtra("roles", roles);
+        intent.putExtra("username",username);
         MainController.displayScreen(intent);
     }
 
@@ -177,5 +181,10 @@ public class ScheduleProgramController {
         // Go back to ProgramList screen with refreshed programs.
         sp2edit = scheduleProgram;
         startUseCase();
+    }
+
+    public void selectCancelViewScheduleProgram(String username, String roles) {
+        // Go back to ProgramList screen with refreshed programs.
+        startUseCase(username,roles);
     }
 }

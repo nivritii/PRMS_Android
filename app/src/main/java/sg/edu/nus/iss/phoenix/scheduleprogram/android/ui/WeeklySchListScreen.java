@@ -53,9 +53,11 @@ public class WeeklySchListScreen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (roles.contains("manager"))
-                    ControlFactory.getScheduleProgramController().selectCreateScheduleProgram();
-                else Toast.makeText(getApplicationContext(), "No Priviledge",
-                        Toast.LENGTH_SHORT).show();
+                    ControlFactory.getScheduleProgramController().selectCreateScheduleProgram(username, roles);
+                else {
+                    Toast.makeText(getApplicationContext(), "No Priviledge",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

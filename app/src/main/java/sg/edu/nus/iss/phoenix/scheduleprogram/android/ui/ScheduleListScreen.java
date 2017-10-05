@@ -102,7 +102,7 @@ public class ScheduleListScreen extends AppCompatActivity{
                     if (selectedSP.getPresenter().equals(username) || selectedSP.getProducer().equals(username)
                             || roles.contains("manager")) {
                         Log.v(TAG, "Viewing program slot: " + selectedSP.getName() + selectedSP.getPresenter() + "...");
-                        ControlFactory.getScheduleProgramController().selectEditScheduleProgram(selectedSP);
+                        ControlFactory.getScheduleProgramController().selectEditScheduleProgram(selectedSP, username, roles);
                     }
                     else {
                         Log.v(TAG, "Viewing program slot False: " + selectedSP.getName() + selectedSP.getPresenter() + " No Priviledge");
@@ -135,4 +135,5 @@ public class ScheduleListScreen extends AppCompatActivity{
             mSPAdapter.add(schedulePrograms.get(i));
         }
     }
+
 }

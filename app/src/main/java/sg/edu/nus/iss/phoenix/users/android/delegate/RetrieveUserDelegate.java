@@ -56,10 +56,11 @@ public class RetrieveUserDelegate extends AsyncTask<String, Void, String> {
         Uri builtUri1 = Uri.parse( PRMS_BASE_URL_USER).buildUpon().build();
         Uri builtUri;
         Log.v(TAG + "  user list param 0: ", params[0]);
-        Log.v(TAG + "  user list param 1: ", params[1]);
-        if (params[1] == null) {
+
+        if (params[1].equals("")) {
             builtUri = Uri.withAppendedPath(builtUri1, params[0]).buildUpon().build();
         }else{
+            Log.v(TAG + "  user list param 1: ", params[1]);
             builtUri = Uri.withAppendedPath(builtUri1, params[0]).buildUpon()
                     .appendQueryParameter("id",params[1])
                     .build();

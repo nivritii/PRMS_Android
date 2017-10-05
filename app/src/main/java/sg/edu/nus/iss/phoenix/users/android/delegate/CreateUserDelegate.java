@@ -26,6 +26,9 @@ public class CreateUserDelegate extends AsyncTask<User,Void,Boolean>{
 
     private static final String TAG = CreateUserDelegate.class.getName();
 
+    private String username;
+    private String roles;
+
     private final UserController userController;
 
     public CreateUserDelegate(UserController userController){
@@ -34,6 +37,9 @@ public class CreateUserDelegate extends AsyncTask<User,Void,Boolean>{
 
     @Override
     protected Boolean doInBackground(User... params) {
+        username = params[1].getIdNo();
+        roles = params[1].getRoles();
+
         Uri builtUri = Uri.parse(PRMS_BASE_URL_USER).buildUpon().build();
         builtUri = Uri.withAppendedPath(builtUri,"item").buildUpon()
                 .appendQueryParameter("id", params[0].getIdNo())
@@ -97,6 +103,6 @@ public class CreateUserDelegate extends AsyncTask<User,Void,Boolean>{
 
     @Override
     protected void onPostExecute(Boolean result) {
-        userController.userCreated(result.booleanValue());
+        userController.userCreated(result.booleanValue(), username, roles);
     }
 }

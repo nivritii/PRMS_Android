@@ -26,6 +26,9 @@ import static sg.edu.nus.iss.phoenix.core.android.delegate.DelegateHelper.PRMS_B
 public class UpdateUserDelegate extends AsyncTask<User,Void,Boolean> {
     private static final String TAG = UpdateProgramDelegate.class.getName();
 
+    private String username;
+    private String roles;
+
     private final UserController userController;
 
     public UpdateUserDelegate(UserController userController){
@@ -34,6 +37,9 @@ public class UpdateUserDelegate extends AsyncTask<User,Void,Boolean> {
 
     @Override
     protected Boolean doInBackground(User... params) {
+        username = params[1].getIdNo();
+        roles = params[1].getRoles();
+
         Uri builtUri = Uri.parse(PRMS_BASE_URL_USER).buildUpon()
                 .appendQueryParameter("id", params[0].getIdNo())
                 .appendQueryParameter("name", params[0].getName())
@@ -95,6 +101,6 @@ public class UpdateUserDelegate extends AsyncTask<User,Void,Boolean> {
 
     @Override
     protected void onPostExecute(Boolean result) {
-        userController.userUpdated(result.booleanValue());
+        userController.userUpdated(result.booleanValue(), username, roles);
     }
 }

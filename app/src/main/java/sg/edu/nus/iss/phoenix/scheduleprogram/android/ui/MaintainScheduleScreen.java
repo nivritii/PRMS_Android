@@ -1,5 +1,6 @@
 package sg.edu.nus.iss.phoenix.scheduleprogram.android.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -41,12 +43,18 @@ public class MaintainScheduleScreen extends AppCompatActivity {
     Spinner spinnerProducer;
     ArrayAdapter<String> adapter;
 
+    private String username;
+    private String roles;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_schedule_program);
 
+        Intent intent = getIntent();
+        username = intent.getStringExtra("username");
+        roles = intent.getStringExtra("roles");
         // Find all relevant views that we will need to read user input from
        // mSPNameEditText = (EditText) findViewById(R.id.maintain_schedule_name_text_view);
 
@@ -120,12 +128,14 @@ public class MaintainScheduleScreen extends AppCompatActivity {
             // Respond to a click on the "Delete" menu option
             case R.id.action_delete:
                 Log.v(TAG, "Deleting program slot" + sp2edit.getName() + "...");
+                Toast.makeText(getApplicationContext(), sp2edit.getName()+" deleted",Toast.LENGTH_SHORT).show();
                 ControlFactory.getScheduleProgramController().selectDeleteScheduleProgram(sp2edit);
                 return true;
             // Respond to a click on the "Cancel" menu option
             case R.id.action_cancel:
                 Log.v(TAG, "Canceling creating/editing program slot...");
-                ControlFactory.getScheduleProgramController().selectCancelCreateEditScheduleProgram(sp2edit);
+                //ControlFactory.getScheduleProgramController().selectCancelCreateEditScheduleProgram(sp2edit);
+                ControlFactory.getScheduleProgramController().selectCancelViewScheduleProgram(username, roles);
                 return true;
 
         }
@@ -180,8 +190,8 @@ public class MaintainScheduleScreen extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Log.v(TAG, "Canceling creating/editing radio program...");
-        ControlFactory.getScheduleProgramController().selectCancelCreateEditScheduleProgram(sp2edit);
+        Log.v(TAG, "Back to weekly schedule list.." + username + " " + roles);
+        ControlFactory.getScheduleProgramController().selectCancelViewScheduleProgram(username, roles);
     }
 
 }
